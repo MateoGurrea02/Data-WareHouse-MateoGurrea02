@@ -1,3 +1,4 @@
 {
     "git.ignoreLimitWarning": true
+	"core.autocrlf":true
 }
