@@ -1,0 +1,14 @@
+header{
+    background-color: $blueFrance;
+    height: 4em;
+    width: 100vw;
+    display: flex;
+    vertical-align: middle;
+    .logoLogIn{
+        justify-content: left;
+        color: $white;
+        margin-left: 2em;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}
