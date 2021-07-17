@@ -6,9 +6,12 @@ header {
   display: -ms-flexbox;
   display: flex;
   vertical-align: middle;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-header .logoLogIn {
+header .logo {
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
@@ -16,6 +19,27 @@ header .logoLogIn {
   margin-left: 2em;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+header .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+header .navigation a {
+  margin-right: 2em;
+  font-family: "Open Sans";
+  color: white;
+  text-decoration: none;
+}
+
+.current a {
+  border-bottom: 2px solid white;
+  padding-bottom: 1.2em;
 }
 
 .artLogin {

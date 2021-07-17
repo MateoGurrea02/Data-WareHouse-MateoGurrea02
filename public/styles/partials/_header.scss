@@ -4,11 +4,30 @@ header{
     width: 100vw;
     display: flex;
     vertical-align: middle;
-    .logoLogIn{
+    justify-content: space-between;
+    .logo{
         justify-content: left;
         color: $white;
         margin-left: 2em;
         margin-top: auto;
         margin-bottom: auto;
+    }
+    .navigation{
+        display: flex;
+        list-style: none;
+        margin-top: auto;
+        margin-bottom: auto;
+        a{
+            margin-right: 2em;
+            font-family: $openSans;
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+.current{
+    a{
+        border-bottom: 2px solid white;
+        padding-bottom: 1.2em;
     }
 }
