@@ -1,0 +1,946 @@
+openapi: 3.0.2
+info:
+  title: Delilah Resto
+  description: "Este proyectyo consta de la construccion de una rest API para una app de pedidos de un restaurante"
+  contact:
+    name: Mateo Gurrea
+    email: mategurrea@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: "Local"
+tags:
+  - name: user
+    description: Modulo de usuario
+  - name: product
+    description: Modulo de roles
+  - name: order
+    description: Modulo de ordenes
+  - name: role
+    description: Modulo de productos
+  - name: condition
+    description: Modulo de estado de pedidos
+paths:
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Endpoint para login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  required: true
+                password:
+                  type: string
+                  required: true
+      responses:
+        200:
+          description: Login satisfactorio
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  rol:
+                    type: string
+                    example: user
+        401:
+          description: Usuario no valido
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: 
+                    type: number
+                    example: 401
+                  message:
+                    type: string
+                    example: incorrect username and / or password
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+  /user:
+    post:
+      tags:
+        - user
+      summary: Endpoint para crear usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:  
+                user_name:
+                  type: string
+                  required: true
+                name:
+                  type: string
+                  required: true
+                surname:
+                  type: string
+                  required: true
+                email:
+                  type: string
+                  required: true
+                password:
+                  type: string
+                  required: true
+                phone_number:
+                  type: number
+                  required: true
+                direction:
+                  type: string
+                  required: true
+                role_id:
+                  type: number
+                  required: false
+      responses:
+        201:
+          description: Usuario creado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 201
+                  message:
+                    type: string
+                    example: user created
+        422:
+          description: Datos Faltantes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 422
+                  message:
+                    type: string
+                    example: The input "user_name", "name", "surname", "email", "password", "phone_number" and "direction" are required
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    get:
+      tags:
+        - user
+      summary: Endpoint obtener todos los usuarios
+      responses:
+        200:
+          description: Obtiene todos los usuarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/user"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+  /user/{id}:
+    patch:
+      tags:
+        - user
+      summary: Endpoint para actualizar usuario
+      parameters:
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: number
+            example: 2
+      requestBody:
+        content:
+          application/json: 
+            schema:
+              type: object
+              properties:
+                user_name:
+                  type: string
+                  required: false
+                name:
+                  type: string
+                  required: false
+                surname:
+                  type: string
+                  required: false
+                email:
+                  type: string
+                  required: false
+                password:
+                  type: string
+                  required: false
+                phone_number:
+                  type: number
+                  required: false
+                direction:
+                  type: string
+                  required: false
+                role_id:
+                  type: number
+                  required: false
+      responses:
+        200:
+          description: Usuario actualizado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200  
+                  message:
+                    type: string
+                    example: Updated user
+        401:
+          description: No estas autorizado o no mandaste el token 
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Usuario no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                    example: user not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"  
+    delete:
+      tags:
+        - user
+      summary: Endpoint para eliminar usuario
+      parameters:
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: number
+            example: 1
+      responses:
+        200:
+          description: Usuario eliminado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200 
+                  message:
+                    type: string
+                    example: User deleted
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Usuario no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                    example: user not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"  
+    get:
+      tags:
+        - user
+      summary: Endpoint para obtener un usuario por id
+      parameters:
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: number
+            example: 1
+      responses:
+        200:
+          description: Usuario obtenido con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200  
+                  data:
+                    items:
+                      $ref: "#/components/schemas/user"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Usuario no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 404  
+                  message:
+                    type: string
+                    example: user not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+  /product:
+    get:
+      tags:
+        - product
+      summary: Endpoint para obtener todos los productos
+      responses:
+        200:
+          description: Obtiene todos los productos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: 200
+                    example: 200  
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/product"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    post:
+      tags:
+        - product
+      summary: Endpoint para crear un producto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                name:
+                  type: string
+                  example: "Nombre del producto"  
+                  required: true
+                price:
+                  type: number
+                  example: 5
+                  required: true
+                img:
+                  type: string
+                  example: "http://www.google.com"
+                  required: true
+      responses:
+        200:
+          description: Producto creado con exito  
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 200
+                  data:
+                    type: string
+                    example: "Product created"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        500:
+          description: Internal server error
+          content:
+            application/json: 
+              schema:
+                $ref: "#/components/schemas/error500"
+  /product/{id}:
+    get:
+      tags:
+        - product
+      summary: Endpoint para obtener un producto por id
+      parameters:
+        - in: query
+          name: id
+          required: false
+          schema:
+            type: number
+            example: 5
+      responses:
+        200:
+          description: Obtiene un producto por id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/product"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Producto no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                    example: product not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    patch:
+      tags:
+        - product
+      summary: Endpoint para editar un producto por id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: number
+            example: 5
+      requestBody:
+        content:
+          application/json: 
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Nombre del producto"
+                  required: false
+                price:
+                  type: number
+                  example: 5
+                  required: false
+                img:
+                  type: string
+                  example: "http://www.google.com"
+                  required: false
+      responses:
+        200:
+          description: Producto editado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  data: 
+                    type: string
+                    example: update product
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Producto no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  message:
+                    type: string
+                    example: product not found  
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    delete:
+      tags:
+        - product
+      summary: Endpoint para borrar un producto por id
+      parameters:
+        - in: query 
+          name: id
+          required: true
+          schema:
+            type: number
+            example: 5
+      responses:
+        200:
+          description: Producto borrado con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200
+                  data:
+                    type: string
+                    example: "Product deleted"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"  
+        404:
+          description: Producto no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 404  
+                  message:
+                    type: string
+                    example: product not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+  /order:
+    get:
+      tags:
+        - order
+      summary: Endpoint para obtener todas las ordenes
+      responses:
+        200:
+          description: Obtiene todas las ordenes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: 200
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/order"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"
+        500:
+          description: Internal server error
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    post:
+      tags:
+        - order
+      summary: Endpoint para crear una orden
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                products:
+                  type: array
+                  required: true
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 5
+                        required: true
+                      quantity:
+                        type: number
+                        example: 5
+                        required: true
+      responses:
+        200:
+          description: Orden creada con exito
+          content:  
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 200  
+                  data:
+                    type: string
+                    example: "Order created"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"
+        500:  
+          description: Internal server error
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+  /order/{id}:
+    patch:
+      tags:
+        - order
+      summary: Endpoint para editar la condicion de una orden por id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: number
+            example: 5
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                condition_id:
+                  type: number
+                  example: 5
+                  required: true
+      responses:
+        200:
+          description: Orden editada con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 200
+                  data:
+                    type: string
+                    example: "Order updated"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"
+        404:
+          description: Orden no existe
+          content:  
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 404  
+                  message:  
+                    type: string
+                    example: order not found  
+        500:
+          description: Internal server error
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    delete:
+      tags:
+        - order
+      summary: Endpoint para borrar una orden por id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: number
+            example: 5
+      responses:
+        200:
+          description: Orden borrada con exito
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  status: 
+                    type: number
+                    example: 200  
+                  data: 
+                    type: string
+                    example: "Order deleted"  
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"
+        404:  
+          description: Orden no existe
+          content:  
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 404  
+                  message:
+                    type: string
+                    example: order not found  
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    get:
+      tags:
+        - order
+      summary: Endpoint para obtener una orden por id
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: number
+            example: 5
+      responses:
+        200:
+          description: Orden obtenida con exito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: number
+                    example: 200  
+                  data: 
+                    type: object
+                    $ref: "#/components/schemas/order"
+        401:
+          description: No estas autorizado o no mandaste el token
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error401"
+        404:  
+          description: Orden no existe
+          content:  
+            application/json:
+              schema:
+                type: object
+                properties:                 
+                  status:
+                    type: number
+                    example: 404  
+                  message:  
+                    type: string
+                    example: order not found  
+        500:  
+          description: Internal server error
+          content:  
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error500"
+    
+    
+    
+
+components:
+  schemas:
+    error401:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 401
+        message:
+          type: string
+          example: Token is missing / You not authorized
+    error500:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal server error
+    user:
+      type: object
+      properties:
+        id:
+          type: number
+        user_name:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone_number:
+          type: number
+        direction:
+          type: string
+        role:
+          $ref: '#/components/schemas/role'
+    role: 
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    product:
+      type: object
+      properties: 
+        id:
+          type: number
+        name:
+          type: string
+        price:  
+          type: number
+        img:
+          type: string
+    order:
+      type: object
+      properties:
+        id:
+          type: number
+        oreder_date:
+          type: string
+        user:
+          $ref: '#/components/schemas/user'
+          excludes:
+            - password
+        condition:
+          $ref: '#/components/schemas/condition'
+        order_line:
+          type: array
+          items:
+            $ref: '#/components/schemas/order_line'
+    condition:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+    order_line:
+      type: object
+      properties: 
+        id:
+          type: number
+        total:
+          type: number
+        product:
+          $ref: '#/components/schemas/product'     
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
