@@ -1,0 +1,117 @@
+header {
+  background-color: #1D72C2;
+  height: 4em;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  vertical-align: middle;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header .logo {
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  color: #ffffff;
+  margin-left: 2em;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+header .navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+header .navigation a {
+  margin-right: 2em;
+  font-family: "Open Sans";
+  color: white;
+  text-decoration: none;
+}
+
+.current a {
+  border-bottom: 2px solid white;
+  padding-bottom: 1.2em;
+}
+
+.artLogin {
+  border: 1px solid #000000;
+  border-radius: 10px;
+  -webkit-box-shadow: black 3px 5px 10px;
+          box-shadow: black 3px 5px 10px;
+  display: block;
+  max-width: -webkit-min-content;
+  max-width: -moz-min-content;
+  max-width: min-content;
+  text-align: center;
+  margin: auto;
+  margin-top: 10em;
+}
+
+.artLogin .titleLogin {
+  font-family: "Open Sans";
+  color: #000000;
+  padding: 4em 6em 2em 6em;
+}
+
+.artLogin .formLogin .user {
+  display: block;
+  margin: auto;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+  font-family: "Open Sans";
+}
+
+.artLogin .formLogin .password {
+  display: block;
+  margin: auto;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  font-family: "Open Sans";
+}
+
+.artLogin .formLogin .button {
+  cursor: pointer;
+  font-family: "Open Sans";
+  padding: 2px 15px;
+  border: 1px solid #1D72C2;
+  border-radius: 1px;
+  color: #ffffff;
+  background-color: #1D72C2;
+  margin-left: 8em;
+  margin-top: 3em;
+  margin-bottom: 4em;
+}
+
+.artLogin .formLogin .button:hover {
+  -webkit-box-shadow: black 1px 3px 5px;
+          box-shadow: black 1px 3px 5px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: "Open Sans";
+}
+
+.fa-exchange-alt {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+/*# sourceMappingURL=styles.css.map */

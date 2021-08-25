@@ -1,0 +1,19 @@
+@import './partials/_variables';
+@import './partials/_header';
+@import './partials/_login';
+@import './partials/_users';
+@import './partials/_company';
+@import './partials/_contacts';
+@import './partials/_region-city';
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-family: $openSans;
+}
+.fa-exchange-alt{
+    transform: rotate(90deg);
+}
