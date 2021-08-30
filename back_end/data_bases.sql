@@ -1,26 +1,27 @@
-create database datawarehouse
+create database datawarehouse;
 
-use datawarehouse
+use datawarehouse;
 
 create table regions(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null
 );
-create table profile(
+
+create table profiles(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null
 );
-create table country(
+create table countries(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null,
-	regions_id int not null,
-	foreign key (regions_id) references regions(id)
+	region_id int not null,
+	foreign key (region_id) references regions(id)
 );
 create table cities(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null,
 	country_id int not null,
-	foreign key (country_id) references country(id)
+	foreign key (country_id) references countries(id)
 );
 create table preferences(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -33,17 +34,6 @@ create table contact_channel(
 	preference_id int not null,
 	foreign key (preference_id) references preferences(id)
 );
-create table contacts(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	name varchar(255) not null,
-	surname varchar(255) not null,
-	email varchar(255) not null,
-	position_company varchar(255) not null,
-	country_id int not null,
-	contact_channel_id int not null,
-	foreign key (contact_channel_id) references contact_channel(id),
-	foreign key (country_id) references country(id)
-);
 create table users(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null,
@@ -51,7 +41,7 @@ create table users(
 	email varchar(255) not null,
 	profile_id int not null,
 	password varchar(255) not null,
-	foreign key (profile_id) references profile(id)
+	foreign key (profile_id) references profiles(id)
 );
 create table companies(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -59,11 +49,23 @@ create table companies(
 	direction varchar(255),
 	phone varchar(19) not null,
 	country_id int not null,
-	foreign key (country_id) references country(id)
+	foreign key (country_id) references countries(id)
 );
-
-insert into profile values (null, "Admin");
-insert into profile values (null, "Básico");
+create table contacts(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	name varchar(255) not null,
+	surname varchar(255) not null,
+	email varchar(255) not null,
+	company_id int not null,
+	position_company varchar(255) not null,
+	country_id int not null,
+	contact_channel_id int not null,
+	foreign key (company_id) references companies(id),
+	foreign key (contact_channel_id) references contact_channel(id),
+	foreign key (country_id) references countries(id)
+);
+insert into profiles values (null, "Admin");
+insert into profiles values (null, "Básico");
 
 insert into	preferences values (null, "Sin preferencia");
 insert into	preferences values (null, "Canal Favorito");
@@ -76,12 +78,12 @@ insert into contact_channel values(null,"Telefono", null, 1);
 
 insert into regions values(null, "Sudamérica");
 insert into regions values(null, "Norteamérica");
-insert into country values(null, "Argentina", 1);
-insert into country values(null, "Colombia", 1);
-insert into country values(null, "Chile", 1);
-insert into country values(null, "Uruguay", 1);
-insert into country values(null, "Mexico", 2);
-insert into country values(null, "Estados Unidos", 2);
+insert into countries values(null, "Argentina", 1);
+insert into countries values(null, "Colombia", 1);
+insert into countries values(null, "Chile", 1);
+insert into countries values(null, "Uruguay", 1);
+insert into countries values(null, "Mexico", 2);
+insert into countries values(null, "Estados Unidos", 2);
 insert into cities values(null, "Córdoba", 1);
 insert into cities values(null, "Buenos Aires", 1);
 insert into cities values(null, "Bogtá", 2);
@@ -97,3 +99,9 @@ insert into cities values(null, "Ciudad de México", 5);
 insert into cities values(null, "Tijuana", 5);
 insert into cities values(null, "Florida", 6);
 insert into cities values(null, "Texas", 6);
+
+insert into companies values(null,"face", "adsad222", "123412313", 1);
+
+insert into contacts values(null, "mateo", "gurrea", "mateo@gmail.com", 1, "Developer", 1, 1);
+
+insert into users values(null,"mateo", "gurrea", "admin@gmail.com", 1, "123");
