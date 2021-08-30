@@ -1,8 +1,9 @@
-const { DataTypes, BelongsTo } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 const connection = require('../connection');
 const countryModel = require('../models/country');
 const contact_channelModel = require('../models/contact_channel');  
+const companyModel = require('../models/company')
 
 const model = connection.define(
     'contact',
@@ -16,7 +17,10 @@ const model = connection.define(
         email: {
             type: DataTypes.STRING
         },
-        psition_company:{
+        company_id: {
+            type: DataTypes.INTEGER
+        },
+        position_company:{
             type: DataTypes.STRING
         },
         country_id: {
@@ -28,8 +32,11 @@ const model = connection.define(
     },{timestamps: false}
 );
 
-model.belongsTo(countryModel, { as: 'country', foreignKey: 'country_id' });
+
+model.belongsTo(companyModel , {as:'company', foreignKey: 'company_id'});
+model.belongsTo(countryModel , {as:'country', foreignKey: 'country_id'});
 model.belongsTo(contact_channelModel, { as: 'contact_channel', foreignKey: 'contact_channel_id' });
+
 
 
 module.exports = model;

@@ -25,6 +25,18 @@ if (config.env === 'development') {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }
 
+//Endpoints for Users
+app.get('/api/user', UserController.getAll);
+//Endpoints for Regions
+app.get('/api/region', RegionController.getAll);
+//Endpoints for Countries
+app.get('/api/country', CountryController.getAll);
+//Endpoints for Cities
+app.get('/api/city', CityContoller.getAll);
+//Endpoints for Contacts
+app.get('/api/contact', ContactController.getAll);
+//Endpoints for Companies
+app.get('/api/company', CompanyController.getAll);
 
 const port = config.port;
 app.listen(port, () => {

@@ -15,7 +15,7 @@ const model = connection.define(
     },{timestamps: false}
 );
 
-model.belongsTo(regionModel, { as: 'region', foreignKey: 'regions_id' });
+model.belongsTo(regionModel, { as: 'region', foreignKey: 'region_id' });
 
 
 module.exports = model;
