@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const connection = require('../connection');
-const countryModel = require('./country')
+const cityModel = require('./cities')
 
 const model = connection.define(
     'company',
@@ -15,13 +15,13 @@ const model = connection.define(
         phone: {
             type: DataTypes.STRING
         },
-        country_id:{
+        city_id:{
             type: DataTypes.INTEGER
         }
     },{timestamps: false}
 );
 
 
-model.belongsTo(countryModel, {as: 'country', foreignKey: 'country_id'});
+model.belongsTo(cityModel, {as: 'city', foreignKey: 'city_id'});
 
 module.exports = model;

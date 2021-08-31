@@ -27,7 +27,7 @@ create table preferences(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null
 );
-create table contact_channel(
+create table contact_channels(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	name varchar(255) not null,
 	information varchar(255),
@@ -48,8 +48,8 @@ create table companies(
 	name varchar(255) not null,
 	direction varchar(255),
 	phone varchar(19) not null,
-	country_id int not null,
-	foreign key (country_id) references countries(id)
+	city_id int not null,
+	foreign key (city_id) references cities(id)
 );
 create table contacts(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -59,11 +59,18 @@ create table contacts(
 	company_id int not null,
 	position_company varchar(255) not null,
 	country_id int not null,
-	contact_channel_id int not null,
 	foreign key (company_id) references companies(id),
-	foreign key (contact_channel_id) references contact_channel(id),
 	foreign key (country_id) references countries(id)
 );
+
+create table contact_channel_lines(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	contact_id int not null,
+	contact_channel_id int not null,
+	foreign key (contact_id) references contacts(id),
+	foreign key (contact_channel_id) references contact_channels(id)
+);
+
 insert into profiles values (null, "Admin");
 insert into profiles values (null, "Básico");
 
@@ -71,10 +78,10 @@ insert into	preferences values (null, "Sin preferencia");
 insert into	preferences values (null, "Canal Favorito");
 insert into	preferences values (null, "No molestar");
 
-insert into contact_channel values(null,"WhatsApp", null,1);
-insert into contact_channel values(null,"Twitter", null, 1);
-insert into contact_channel values(null,"Facebook", null, 1);
-insert into contact_channel values(null,"Telefono", null, 1);
+insert into contact_channels values(null,"WhatsApp", null,1);
+insert into contact_channels values(null,"Twitter", null, 1);
+insert into contact_channels values(null,"Facebook", null, 1);
+insert into contact_channels values(null,"Telefono", null, 1);
 
 insert into regions values(null, "Sudamérica");
 insert into regions values(null, "Norteamérica");

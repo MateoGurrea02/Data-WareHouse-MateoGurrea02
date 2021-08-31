@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
 
 const connection = require('../connection');
-const countryModel = require('../models/country');
-const contact_channelModel = require('../models/contact_channel');  
-const companyModel = require('../models/company')
+const countryModel = require('./country');
+const contact_channel_lineModel = require('./contact_channel_line');  
+const companyModel = require('./company')
 
 const model = connection.define(
     'contact',
@@ -25,9 +25,6 @@ const model = connection.define(
         },
         country_id: {
             type: DataTypes.INTEGER
-        },
-        contact_channel_id:{
-            type: DataTypes.INTEGER
         }
     },{timestamps: false}
 );
@@ -35,7 +32,8 @@ const model = connection.define(
 
 model.belongsTo(companyModel , {as:'company', foreignKey: 'company_id'});
 model.belongsTo(countryModel , {as:'country', foreignKey: 'country_id'});
-model.belongsTo(contact_channelModel, { as: 'contact_channel', foreignKey: 'contact_channel_id' });
+model.hasMany(contact_channel_lineModel, {as: 'contact_channel_line', foreignKey: 'contact_id'});
+
 
 
 
