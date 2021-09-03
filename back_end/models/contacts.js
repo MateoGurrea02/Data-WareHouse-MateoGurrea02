@@ -17,6 +17,9 @@ const model = connection.define(
         email: {
             type: DataTypes.STRING
         },
+        direction: {
+            type: DataTypes.STRING
+        },
         company_id: {
             type: DataTypes.INTEGER
         },

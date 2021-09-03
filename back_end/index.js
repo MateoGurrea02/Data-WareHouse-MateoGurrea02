@@ -62,6 +62,7 @@ app.delete('/api/city/:id', existCity,CityContoller.delete);
 
 //Endpoints for Contacts
 app.get('/api/contact', ContactController.getAll);
+app.post('/api/contact', ContactController.create);
 
 //Endpoints for Companies
 app.get('/api/company', CompanyController.getAll);
