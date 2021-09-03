@@ -32,15 +32,13 @@ class Contact {
                         {
                             model: contact_channelModel,
                             as: 'contact_channel',
-                            include: [{
-                                model: preferenceModel,
-                                as: 'preference',
-                            }],attributes: {
-                                exclude: ['preference_id']
-                            }
-                        }
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
                     ],attributes: {
-                        exclude: ['contact_id','contact_channel_id']
+                        exclude: ['contact_id','preference_id','contact_channel_id']
                     }
                 }
             ],attributes: {
