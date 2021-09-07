@@ -23,6 +23,7 @@ const existCity = require('./middlewares/existCity');
 const existCountry = require('./middlewares/existCountry');
 const existRegion = require('./middlewares/existRegion');
 const existCompany = require('./middlewares/existCompany');
+const existContact = require('./middlewares/existContact');
 
 
 //Docs
@@ -64,6 +65,8 @@ app.delete('/api/city/:id', existCity,CityContoller.delete);
 //Endpoints for Contacts
 app.get('/api/contact', ContactController.getAll);
 app.post('/api/contact', ContactController.create);
+app.patch('/api/contact/:id', existContact,ContactController.update);
+app.delete('/api/contact/:id', existContact,ContactController.delete);
 
 //Endpoints for Contacts_channel
 app.post('/api/contact_channel', ContactChannelController.add);

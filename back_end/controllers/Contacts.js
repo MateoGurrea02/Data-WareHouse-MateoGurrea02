@@ -144,6 +144,48 @@ class Contact {
             })
         }
     }
+    static async update(req, res) {
+        try {
+            const { name, surname, email, company_id, position_company} = req.body;
+            const contactId = await contactModel.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            const contactUpdated = await contactId.update(
+                { name, surname, email, company_id, position_company},
+                { fields: ["name", "surname", "email", "company_id","position_company"] }
+            );
+            return res.status(200).json({
+                status: 200,
+                message: 'contact updated'
+            }) 
+        } catch (err) {
+            return res.status(500).json({
+                status: 500,
+                error: err
+            })
+        }
+    }
+    static async delete(req, res) {
+        try {
+            const contactId = await contactModel.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            await contactId.destroy();
+            return res.status(200).json({
+                status: 200,
+                message: 'contact deleted'
+            }) 
+        } catch (err) {
+            return res.status(500).json({
+                status: 500,
+                error: err
+            })
+        }
+    }
 }
 
 module.exports = Contact;
