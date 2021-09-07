@@ -15,6 +15,7 @@ const UserController = require('./controllers/Users');
 const ContactController = require('./controllers/Contacts');
 const CountryController = require('./controllers/Countrys');
 const RegionController = require('./controllers/Regions');
+const ContactChannelController = require('./controllers/Contact_channel'); 
 
 //Middlewares
 const existUser = require('./middlewares/existUser');
@@ -63,6 +64,9 @@ app.delete('/api/city/:id', existCity,CityContoller.delete);
 //Endpoints for Contacts
 app.get('/api/contact', ContactController.getAll);
 app.post('/api/contact', ContactController.create);
+
+//Endpoints for Contacts_channel
+app.post('/api/contact_channel', ContactChannelController.add);
 
 //Endpoints for Companies
 app.get('/api/company', CompanyController.getAll);
