@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use('/public', express.static('public'));
+
 const config = require('./config/index');
 const connection = require('./connection');
 const CityContoller = require('./controllers/Cities');
@@ -24,6 +26,8 @@ const existCountry = require('./middlewares/existCountry');
 const existRegion = require('./middlewares/existRegion');
 const existCompany = require('./middlewares/existCompany');
 const existContact = require('./middlewares/existContact');
+const isAdmin = require('./middlewares/isAdmin');
+const isBasico = require('./middlewares/isBasico');
 
 
 //Docs
@@ -36,46 +40,47 @@ if (config.env === 'development') {
 }
 //Endpoint Login
 app.post('/api/user/login', UserController.login);
+// app.post('/api/user/login/:token', UserController.checkToken);
 
 //Endpoints for Users
-app.get('/api/user', UserController.getAll);
-app.post('/api/user', UserController.create);
-app.get('/api/user/:id', existUser,UserController.getById);
-app.patch('/api/user/:id', existUser, UserController.update);
-app.delete('/api/user/:id', existUser,UserController.delete);
+app.get('/api/user', isAdmin, UserController.getAll);
+app.post('/api/user', isAdmin, UserController.create);
+app.get('/api/user/:id', existUser, isAdmin, UserController.getById);
+app.patch('/api/user/:id', existUser, isAdmin, UserController.update);
+app.delete('/api/user/:id', existUser, isAdmin, UserController.delete);
 
 //Endpoints for Regions
-app.get('/api/region', RegionController.getAll);
-app.post('/api/region', RegionController.create);
-app.patch('/api/region/:id', existRegion, RegionController.update);
-app.delete('/api/region/:id', existRegion, RegionController.delete);
+app.get('/api/region', isBasico, RegionController.getAll);
+app.post('/api/region', isBasico, RegionController.create);
+app.patch('/api/region/:id', isBasico, existRegion, RegionController.update);
+app.delete('/api/region/:id', isBasico, existRegion, RegionController.delete);
 
 //Endpoints for Countries
-app.get('/api/country', CountryController.getAll);
-app.post('/api/country', CountryController.create);
-app.patch('/api/country/:id', existCountry, CountryController.update);
-app.delete('/api/country/:id', existCountry, CountryController.delete);
+app.get('/api/country', isBasico, CountryController.getAll);
+app.post('/api/country', isBasico, CountryController.create);
+app.patch('/api/country/:id', isBasico, existCountry, CountryController.update);
+app.delete('/api/country/:id', isBasico, existCountry, CountryController.delete);
 
 //Endpoints for Cities
-app.get('/api/city', CityContoller.getAll);
-app.post('/api/city', CityContoller.create);
-app.patch('/api/city/:id', existCity,CityContoller.update);
-app.delete('/api/city/:id', existCity,CityContoller.delete);
+app.get('/api/city', isBasico, CityContoller.getAll);
+app.post('/api/city', isBasico, CityContoller.create);
+app.patch('/api/city/:id', isBasico, existCity,CityContoller.update);
+app.delete('/api/city/:id', isBasico, existCity,CityContoller.delete);
 
 //Endpoints for Contacts
-app.get('/api/contact', ContactController.getAll);
-app.post('/api/contact', ContactController.create);
-app.patch('/api/contact/:id', existContact,ContactController.update);
-app.delete('/api/contact/:id', existContact,ContactController.delete);
+app.get('/api/contact', isBasico, ContactController.getAll);
+app.post('/api/contact', isBasico, ContactController.create);
+app.patch('/api/contact/:id', isBasico, existContact,ContactController.update);
+app.delete('/api/contact/:id', isBasico, existContact,ContactController.delete);
 
 //Endpoints for Contacts_channel
-app.post('/api/contact_channel', ContactChannelController.add);
+app.post('/api/contact_channel', isBasico, ContactChannelController.add);
 
 //Endpoints for Companies
-app.get('/api/company', CompanyController.getAll);
-app.post('/api/company', CompanyController.create);
-app.patch('/api/company/:id', existCompany, CompanyController.update);
-app.delete('/api/company/:id', existCompany, CompanyController.delete);
+app.get('/api/company', isBasico, CompanyController.getAll);
+app.post('/api/company', isBasico, CompanyController.create);
+app.patch('/api/company/:id', isBasico, existCompany, CompanyController.update);
+app.delete('/api/company/:id', isBasico, existCompany, CompanyController.delete);
 
 const port = config.port;
 app.listen(port, () => {

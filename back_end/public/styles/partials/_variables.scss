@@ -15,3 +15,13 @@ $strongLigthBlue:#1CC1F5;
 $orange:#FF6F00;
 $yellow:#FFC700;
 $whiteBone:#E8E8E8;
+$greyInput:#ced4da;
+
+@keyframes moveRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100px);
+    }
+  }

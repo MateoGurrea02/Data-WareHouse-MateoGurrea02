@@ -1,0 +1,206 @@
+hr{
+    margin-top: 3em;
+    border: 0 none $blueFrance;
+    border-top: 2px solid $blueFrance;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+    font-family: $openSans;
+    .artUserCreate{
+        // border-top: 2px solid $blueFrance;
+        // border-radius: 10px;
+        // box-shadow: $blue 3px 5px 10px;
+        display: block;
+        max-width: min-content;
+        text-align: center;
+        margin-top: 2em;
+        padding: 2em 4em;
+        .titleUserCreate{
+            font-family: $openSans;
+            color: $black;
+            padding: 4em 6em 2em 6em;
+        }
+        .formUserCreate{
+            .userCreate{
+                display: block;
+                margin-top: 1.5em;
+                font-family: $openSans;
+                text-align: center;
+                label{
+                    display: block;
+                    text-align: left;
+                    padding-left: 0.8em;
+                    &::after{
+                        content: '*';
+                        color: $pink;
+                        font-size: 1em;
+                    }
+                }
+                input{
+                    font-family: $openSans;
+                    padding: .5em;
+                    padding-left: 1em;
+                    border: 1px solid $greyInput;
+                    border-radius: 4px;
+                }
+            }
+            .require{
+                &::after{
+                    content: 'Campo obligatorio';
+                    color: $pink;
+                    font-size: 0.7em;
+                    position: relative;
+                    top: -0.5em;
+                    left: -3em;
+                    text-align: left;
+                    font-style: oblique;
+                }
+            }
+            
+            .selectUser{
+                width: 13.5em;
+                padding: .5em;
+                font-family: $openSans;
+                border: 1px solid $blueFrance;
+                background-color: transparent;
+                border-radius: 4px;
+                color: $blueFrance;
+                .option{
+                    border: none;
+                    padding: 5px;
+                }                
+            }
+            .button{
+                font-family: $openSans;
+                font-size: 1em;
+                cursor: pointer;
+                padding: 2px 15px;
+                border: 1px solid $blueFrance;
+                border-radius: 2px;
+                color: $white;
+                background-color: $blueFrance;
+                margin-left: 8em;
+                margin-top: 3em;
+                margin-bottom: 2em;
+                &:hover{
+                    box-shadow: black 1px 3px 5px;
+                }
+            }
+        }
+    }
+    .artUserUpdate{
+        // border-top: 2px solid $blueFrance;
+        // box-shadow: $blue 3px 5px 10px;
+        display: block;
+        max-width: min-content;
+        text-align: center;
+        margin-top: 2em;
+        padding: 2em 4em;
+        .titleUserUpdate{
+            font-family: $openSans;
+            color: $black;
+            padding: 4em 6em 2em 6em;
+        }
+        .formUserUpdate{
+            .userUpdate{
+                display: block;
+                margin-top: 1.5em;
+                font-family: $openSans;
+                text-align: center;
+                label{
+                    display: block;
+                    text-align: left;
+                    padding-left: 0.8em;
+                }
+                input{
+                    font-family: $openSans;
+                    padding: .5em;
+                    padding-left: 1em;
+                    border: 1px solid $greyInput;
+                    border-radius: 4px;
+                }
+            }
+            .require{
+                &::after{
+                    content: 'Campo obligatorio';
+                    color: $pink;
+                    font-size: 0.7em;
+                    position: relative;
+                    top: -0.5em;
+                    left: -3em;
+                    text-align: left;
+                    font-style: oblique;
+                }
+            }
+            .selectUser{
+                width: 13.5em;
+                padding: .5em;
+                font-family: $openSans;
+                border: 1px solid $blueFrance;
+                background-color: transparent;
+                border-radius: 4px;
+                color: $blueFrance;
+                .option{
+                    border: none;
+                    padding: 5px;
+                }                
+            }
+            .button{
+                font-family: $openSans;
+                font-size: 1em;
+                cursor: pointer;
+                padding: 2px 15px;
+                border: 1px solid $blueFrance;
+                border-radius: 2px;
+                color: $white;
+                background-color: $blueFrance;
+                margin-left: 8em;
+                margin-top: 3em;
+                margin-bottom: 2em;
+                &:hover{
+                    box-shadow: black 1px 3px 5px;
+                }
+            }
+        }
+    }
+
+    .artAllUsers{
+        display: flex;
+        flex-wrap: wrap;
+        width: 60vw;
+        margin-top: 3em;
+        table{
+            width: 100%;
+            text-align: left;
+            border: 1px solid $greyInput;       
+            th{
+                border-bottom: 1px solid $greyInput;
+                padding-left: 1em;
+                font-weight: $regular;
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+            td{
+                padding-left: 1em;
+                font-size: .9em;
+                .fa-trash{
+                    color: $blueFrance;
+                    &:hover{
+                        color: $pink;
+                    }
+                }
+            }
+            
+            th:last-child{
+                text-align: right;
+                padding-right: 1em;
+            }
+            td:last-child{
+                text-align: right;
+                padding-right: 1em;
+            }
+            
+        }
+    }
+}

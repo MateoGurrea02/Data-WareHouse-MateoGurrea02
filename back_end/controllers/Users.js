@@ -50,7 +50,6 @@ class User {
             profile: user.profile.name
         });
     }
-
     static async create(req, res) {
         try {
             const { name, surname, email, password, profile_id } = req.body;

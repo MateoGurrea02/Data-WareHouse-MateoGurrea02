@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehouse</title>
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/c27ca5b0e1.js" crossorigin="anonymous"></script>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>LOGO</h1>
+        </div>
+        <ul class="navigation" id="navigation">
+            <li id="contactNav">
+                <a href="contacts.html">Contactos</a>
+            </li>
+            <li id="companyNav">
+                <a href="company.html">Compañías</a>
+            </li>
+            <li id="usersNav" class="current">
+                <a href="users.html">Usuarios</a>
+            </li>
+            <li id="regionNav">
+                <a href="region-city.html">Region/Ciudad</a>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <section>
+            <article class="artAllUsers">
+                <h2>Lista De Usuarios</h2>
+                <table id="userList">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>ID</th>
+                        <th>Accion</th>
+                    </tr>
+                </table>
+            </article>
+        </section>
+        <hr>
+        <section>
+            <article class="artUserCreate">
+                <div class="titleUser">
+                    <h2>Crear Usuario</h2>
+                </div>
+                <form action="" class="formUserCreate">
+                    <span class="userCreate" id="requireCreateName">
+                        <label for="nameUserCreate">Nombre</label>
+                        <input type="text" id="nameUserCreate">
+                    </span>
+                    <span class="userCreate" id="requireCreateSurname">
+                        <label for="surnameUserCreate">Apellido</label>
+                        <input type="text" id="surnameUserCreate">
+                    </span>
+                    <span class="userCreate" id="requireCreateEmail">
+                        <label for="emailUserCreate">Correo Electronico</label>
+                        <input type="email" id="emailUserCreate">
+                    </span>
+                    <span class="userCreate" id="requireCreateProfile">
+                        <label for="profileUserCreate">Tipo de Usuario</label>
+                        <select name="profileUserCreate" class="selectUser" id="profileUserCreate">
+                            <option value="">Selecciona un Perfil</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Basico</option>
+                        </select>
+                    </span>
+                    <span class="userCreate" id="requireCreatePassword">
+                        <label for="passwordUserCreate">Contraseña</label>
+                        <input type="password" id="passwordUserCreate">
+                    </span>
+                    <button class="button" id="submit">Crear</button>
+                </form>
+            </article>
+            <article class="artUserUpdate">
+                <div class="titleUser">
+                    <h2>Editar Usuario</h2>
+                </div>
+                <form action="" class="formUserUpdate">
+                    <span class="userUpdate" id="requireUpdateId">
+                        <label for="idUserUpdate">ID de Usuario</label>
+                        <input type="number" id="idUserUpdate">
+                    </span>
+                    <span class="userUpdate" id="requireUpdateName">
+                        <label for="nameUserUpdate">Nombre</label>
+                        <input type="text" id="nameUserUpdate">
+                    </span>
+                    <span class="userUpdate" id="requireUpdateSurname">
+                        <label for="surnameUserUpdate">Apellido</label>
+                        <input type="text" id="surnameUserUpdate">
+                    </span>
+                    <span class="userUpdate" id="requireUpdateEmail">
+                        <label for="emailUserUpdate">Correo Electronico</label>
+                        <input type="email" id="emailUserUpdate">
+                    </span>
+                    <span class="userUpdate" id="requireUpdateProfile">
+                        <label for="profileUserUpdate">Tipo de Usuario</label>
+                        <select name="profileUserUpdate" class="selectUser" id="profileUserUpdate">
+                            <option value="">Selecciona un Perfil</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Basico</option>
+                        </select>
+                    </span>
+                    <span class="userUpdate" id="requireUpdatePassword">
+                        <label for="passwordUserUpdate">Contraseña</label>
+                        <input type="password" id="passwordUserUpdate">
+                    </span>
+                    <button class="button" id="submitEdit">Editar</button>
+                </form>
+            </article>
+        </section>
+
+    </main>
+
+</body>
+<script type="module" src="js/users.js"></script>
+
+</html>
