@@ -1,6 +1,6 @@
 const countryModel = require('../models/country');
 const regionModel = require('../models/regions');
-
+const cityModel = require('../models/cities');
 class Country {
     static async getAll(req, res) {
         try {
@@ -97,6 +97,12 @@ class Country {
     }
     static async delete(req, res){
         try {   
+            const deleteCity = await cityModel.destroy({
+                where: {
+                    country_id: req.params.id
+                }
+            });
+
             const deleteCountry= await countryModel.destroy({
                 where:{
                     id: req.params.id

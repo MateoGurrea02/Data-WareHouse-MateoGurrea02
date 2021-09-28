@@ -1,38 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Data Warehouse</title>
-        <!-- Icons -->
-        <script src="https://kit.fontawesome.com/c27ca5b0e1.js" crossorigin="anonymous"></script>
-        <!-- Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles/styles.css">
-    </head>
-    
-    <body>
-        <header>
-            <div class="logo">
-                <h1>LOGO</h1>
-            </div>
-            <ul class="navigation" id="navigation">
-                <li id="contactNav">
-                    <a href="contacts.html">Contactos</a>
-                </li>
-                <li id="companyNav">
-                    <a href="company.html">Compañías</a>
-                </li>
-                <li id="usersNav">
-                    <a href="users.html">Usuarios</a>
-                </li>
-                <li id="regionNav" class="current">
-                    <a href="region-city.html">Region/Ciudad</a>
-                </li>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehouse</title>
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/c27ca5b0e1.js" crossorigin="anonymous"></script>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>LOGO</h1>
+        </div>
+        <ul class="navigation" id="navigation">
+            <li id="contactNav">
+                <a href="contacts.html">Contactos</a>
+            </li>
+            <li id="companyNav">
+                <a href="company.html">Compañías</a>
+            </li>
+            <li id="usersNav">
+                <a href="users.html">Usuarios</a>
+            </li>
+            <li id="regionNav" class="current">
+                <a href="region-city.html">Region/Ciudad</a>
+            </li>
+        </ul>
+    </header>
+    <section>
+        <div class="" id="bgOpacity">
+        
+        </div>
+        <article>
+            <ul class="ulPadre" id="ulPadre">
+                <span class="addRegion" id="addRegion">
+                    <button>Agregar Region</button>
+                </span>
             </ul>
-        </header>
-    
-    </body>
-    <script src="./js/region-city.js"></script>
+            <div class="formAdd" id="agregarRegion">
+                <i class="fas fa-times" id="btnClose"></i>
+                <form action="">
+                    <label for="region">Nombre de la Region</label>
+                    <input type="text" name="region" id="region">
+                    <button id="btnCrearRegionRequest">Crear</button>
+                </form>
+            </div>
+            <div class="formAdd" id="agregarPais">
+                <i class="fas fa-times" id="btnPaisClose"></i>
+                <form action="">
+                    <label for="regionPais">Region</label>
+                    <input type="text" readonly id="regionPais">
+                    <label for="pais">Nombre del Pais</label>
+                    <input type="text" name="pais" id="pais">
+                    <button id="btnCrearPaisRequest">Crear</button>
+                </form>
+            </div>
+            <div class="formAdd" id="editarRegion">
+                <i class="fas fa-times" id="btnRegionClose"></i>
+                <form action="">
+                    <label for="regionUpdate">Nombre de la region</label>
+                    <input type="text" name="region" id="regionUpdate">
+                    <button id="btnEditarRegionRequest">Editar</button>
+                </form>
+            </div>
+        </article>
+    </section>
+
+</body>
+<script src="/public/js/region-city.js"></script>
+
 </html>

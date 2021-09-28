@@ -17,11 +17,22 @@ $yellow:#FFC700;
 $whiteBone:#E8E8E8;
 $greyInput:#ced4da;
 
-@keyframes moveRight {
-    from {
-      transform: translateX(0);
+%button{
+    font-family: $openSans;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 2px 15px;
+    border: 1px solid $blueFrance;
+    border-radius: 2px;
+    color: $white;
+    background-color: $blueFrance;
+    &:hover{
+        box-shadow: black 1px 3px 5px;
     }
-    to {
-      transform: translateX(100px);
-    }
-  }
+}
+%buttonIcon{
+    margin-left: 1em;
+    background-color: transparent;
+    border: none;
+    color: $blueFrance;
+}

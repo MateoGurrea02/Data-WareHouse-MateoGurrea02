@@ -72,20 +72,10 @@ section{
                 }                
             }
             .button{
-                font-family: $openSans;
-                font-size: 1em;
-                cursor: pointer;
-                padding: 2px 15px;
-                border: 1px solid $blueFrance;
-                border-radius: 2px;
-                color: $white;
-                background-color: $blueFrance;
+                @extend %button;
                 margin-left: 8em;
                 margin-top: 3em;
                 margin-bottom: 2em;
-                &:hover{
-                    box-shadow: black 1px 3px 5px;
-                }
             }
         }
     }
@@ -147,20 +137,10 @@ section{
                 }                
             }
             .button{
-                font-family: $openSans;
-                font-size: 1em;
-                cursor: pointer;
-                padding: 2px 15px;
-                border: 1px solid $blueFrance;
-                border-radius: 2px;
-                color: $white;
-                background-color: $blueFrance;
+                @extend %button;
                 margin-left: 8em;
                 margin-top: 3em;
                 margin-bottom: 2em;
-                &:hover{
-                    box-shadow: black 1px 3px 5px;
-                }
             }
         }
     }

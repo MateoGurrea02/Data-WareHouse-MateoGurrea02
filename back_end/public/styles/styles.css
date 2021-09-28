@@ -1,23 +1,24 @@
-@-webkit-keyframes moveRight {
-  from {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-  to {
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
-  }
+article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
+  font-family: "Open Sans";
+  font-size: 1em;
+  cursor: pointer;
+  padding: 2px 15px;
+  border: 1px solid #1D72C2;
+  border-radius: 2px;
+  color: #ffffff;
+  background-color: #1D72C2;
 }
 
-@keyframes moveRight {
-  from {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-  to {
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
-  }
+article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
+  -webkit-box-shadow: black 1px 3px 5px;
+          box-shadow: black 1px 3px 5px;
+}
+
+article .ulPadre .regions span span button, article .ulPadre .regions .country span span button, article .ulPadre .regions .country .cityList li div span button {
+  margin-left: 1em;
+  background-color: transparent;
+  border: none;
+  color: #1D72C2;
 }
 
 header {
@@ -121,6 +122,173 @@ header .navigation a {
           box-shadow: black 1px 3px 5px;
 }
 
+.bgOpacity {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+
+article {
+  width: 80%;
+  margin: 2em;
+}
+
+article .formAdd {
+  display: none;
+  border: 1px solid black;
+  padding: 1em;
+  margin-bottom: 1em;
+  position: absolute;
+  z-index: 6;
+  top: 20vh;
+  right: 25vw;
+  height: 60%;
+  width: 50%;
+  background-color: white;
+  text-align: center;
+  -webkit-box-shadow: black 1px 3px 5px;
+          box-shadow: black 1px 3px 5px;
+}
+
+article .formAdd .fa-times {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+  color: #1D72C2;
+  font-size: 1.5em;
+}
+
+article .ulPadre .addRegion {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: right;
+  margin-left: 2em;
+}
+
+article .ulPadre .addRegion button {
+  padding: .6em 2em;
+}
+
+article .ulPadre .regions {
+  display: block;
+  margin-left: 2em;
+  margin-top: .5em;
+  border: 1px solid #1D72C2;
+  border-radius: 2px;
+  padding-left: 1em;
+}
+
+article .ulPadre .regions span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+article .ulPadre .regions span span {
+  border: none;
+}
+
+article .ulPadre .regions span span button .fa-pen:hover {
+  color: #1CC1F5;
+}
+
+article .ulPadre .regions span span button .fa-trash:hover {
+  color: #DE0028;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+article .ulPadre .regions span span button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+article .ulPadre .regions .country {
+  list-style: none;
+  padding-left: 2em;
+  margin-top: 1em;
+}
+
+article .ulPadre .regions .country span {
+  border: 1px solid #1D72C2;
+  border-radius: 2px;
+  padding-left: 1em;
+}
+
+article .ulPadre .regions .country span span {
+  border: none;
+}
+
+article .ulPadre .regions .country span span button .fa-pen:hover {
+  color: #1CC1F5;
+}
+
+article .ulPadre .regions .country span span button .fa-trash:hover {
+  color: #DE0028;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+article .ulPadre .regions .country span span button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+article .ulPadre .regions .country li {
+  padding-top: .5em;
+}
+
+article .ulPadre .regions .country h3 {
+  font-weight: 400;
+}
+
+article .ulPadre .regions .country .cityList {
+  list-style: none;
+  padding-left: 2em;
+}
+
+article .ulPadre .regions .country .cityList li div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+article .ulPadre .regions .country .cityList li div h4 {
+  font-weight: 400;
+}
+
+article .ulPadre .regions .country .cityList li div span {
+  border: none;
+}
+
+article .ulPadre .regions .country .cityList li div span button .fa-pen:hover {
+  color: #1CC1F5;
+}
+
+article .ulPadre .regions .country .cityList li div span button .fa-trash:hover {
+  color: #DE0028;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+article .ulPadre .regions .country .cityList li div span button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 hr {
   margin-top: 3em;
   border: 0 none #1D72C2;
@@ -207,22 +375,9 @@ section .artUserCreate .formUserCreate .selectUser .option {
 }
 
 section .artUserCreate .formUserCreate .button {
-  font-family: "Open Sans";
-  font-size: 1em;
-  cursor: pointer;
-  padding: 2px 15px;
-  border: 1px solid #1D72C2;
-  border-radius: 2px;
-  color: #ffffff;
-  background-color: #1D72C2;
   margin-left: 8em;
   margin-top: 3em;
   margin-bottom: 2em;
-}
-
-section .artUserCreate .formUserCreate .button:hover {
-  -webkit-box-shadow: black 1px 3px 5px;
-          box-shadow: black 1px 3px 5px;
 }
 
 section .artUserUpdate {
@@ -289,22 +444,9 @@ section .artUserUpdate .formUserUpdate .selectUser .option {
 }
 
 section .artUserUpdate .formUserUpdate .button {
-  font-family: "Open Sans";
-  font-size: 1em;
-  cursor: pointer;
-  padding: 2px 15px;
-  border: 1px solid #1D72C2;
-  border-radius: 2px;
-  color: #ffffff;
-  background-color: #1D72C2;
   margin-left: 8em;
   margin-top: 3em;
   margin-bottom: 2em;
-}
-
-section .artUserUpdate .formUserUpdate .button:hover {
-  -webkit-box-shadow: black 1px 3px 5px;
-          box-shadow: black 1px 3px 5px;
 }
 
 section .artAllUsers {

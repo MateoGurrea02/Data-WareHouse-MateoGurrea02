@@ -1,0 +1,152 @@
+.bgOpacity{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+}
+article{
+    width: 80%;
+    margin:2em;
+    .formAdd{
+        display: none;
+        border: 1px solid black;
+        padding: 1em;
+        margin-bottom: 1em;
+        position: absolute;
+        z-index: 6;
+        top: 20vh;
+        right: 25vw;
+        height: 60%;
+        width: 50%;
+        background-color: white;
+        text-align: center;
+        box-shadow: black 1px 3px 5px;
+        .fa-times{
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            cursor: pointer;
+            color: $blueFrance;
+            font-size: 1.5em;
+            
+        }
+    }
+    .ulPadre{
+        button{
+            @extend %button;
+        }
+        .addRegion{
+            display: flex;
+            text-align: right;
+            margin-left: 2em;
+            button{
+                padding: .6em 2em;
+            }
+        }
+        .regions{
+            display:block;
+            margin-left: 2em;
+            margin-top: .5em;
+            border: 1px solid $blueFrance;
+            border-radius: 2px;
+            padding-left: 1em;
+            span{
+                display:flex;
+                justify-content: space-between;
+                span{
+                    border: none;
+                    button{
+                        .fa-pen{
+                            &:hover{
+                                color: $strongLigthBlue;
+                            }
+                        }
+                        .fa-trash{
+                            &:hover{
+                                color: $pink;
+                                box-shadow: none;
+                            }
+                        }
+                        @extend %buttonIcon;
+                        &:hover{
+                            box-shadow: none;
+                        }
+                    }
+                }
+            }
+            .country{
+                list-style: none;
+                padding-left: 2em;
+                margin-top: 1em;
+                span{
+                    border: 1px solid $blueFrance;
+                    border-radius: 2px;
+                    padding-left: 1em;
+                    span{
+                        border: none;
+                        button{
+                            .fa-pen{
+                                &:hover{
+                                    color: $strongLigthBlue;
+                                }
+                            }
+                            .fa-trash{
+                                &:hover{
+                                    color: $pink;
+                                    box-shadow: none;
+                                }
+                            }
+                            @extend %buttonIcon;
+                            &:hover{
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+                li{
+                    padding-top: .5em;
+                }
+                h3{
+                    font-weight: $regular;
+                }
+                .cityList{
+                    list-style: none;
+                    padding-left: 2em;
+                    li{
+                        div{
+                        display: flex;
+                        justify-content: space-between;
+                            h4{
+                                font-weight: $regular;
+                            }
+                            span{
+                                border: none;
+                                button{
+                                    .fa-pen{
+                                        &:hover{
+                                            color: $strongLigthBlue;
+                                        }
+                                    }
+                                    .fa-trash{
+                                        &:hover{
+                                            color: $pink;
+                                            box-shadow: none;
+                                        }
+                                    }
+                                    @extend %buttonIcon;
+                                    &:hover{
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

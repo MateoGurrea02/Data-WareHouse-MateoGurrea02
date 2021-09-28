@@ -1,4 +1,6 @@
 const regionModel = require('../models/regions');
+const countryModel = require('../models/country');
+const cityModel = require('../models/cities');
 
 class Region {
     static async getAll(req, res) {
@@ -65,19 +67,38 @@ class Region {
     }
     static async delete(req, res){
         try {   
-            const deleteRegion= await regionModel.destroy({
+            const countryId = await countryModel.findAll({
+                where: {
+                    region_id: req.params.id
+                }
+            });
+            const country = countryId.map(country => country.id);
+
+            //destroy all cities in the region
+            const cities = await cityModel.destroy({
+                where: {
+                    country_id: country
+                }
+            });
+
+            const deleteCountry = await countryModel.destroy({
+                where:{
+                    region_id: req.params.id
+                }
+            });
+            const deleteRegion = await regionModel.destroy({
                 where:{
                     id: req.params.id
                 }            
             });
             return res.status(201).json({
                 status: 201,
-                message: 'Deleted region'
+                message: 'Deleted region and all countrys'
             })
-        }catch{
+        }catch (error){
             return res.status(500).json({
                 status: 500,
-                error
+                error: error.message
             })   
         }
     }
