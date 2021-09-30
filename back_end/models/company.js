@@ -15,6 +15,9 @@ const model = connection.define(
         phone: {
             type: DataTypes.STRING
         },
+        email: {
+            type: DataTypes.STRING
+        },
         city_id:{
             type: DataTypes.INTEGER
         }

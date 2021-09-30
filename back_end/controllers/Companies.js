@@ -40,11 +40,11 @@ class Company {
     }
     static async create(req, res) {
         try {
-            const { name, direction, phone, city_id } = req.body;
-            if (!name|| !direction||!phone || !city_id ) {
+            const { name, direction, phone, email, city_id } = req.body;
+            if (!name|| !direction||!phone || !email ||!city_id ) {
                 return res.status(422).json({
                     status: 422,
-                    error: 'The input \"name\", \"direction\", \"phone\" and \"city_id\" are required'
+                    error: 'The input \"name\", \"direction\", \"phone\", \"email\"  and \"city_id\" are required'
                 });
             }
             const city = await cityModel.findOne({
@@ -60,8 +60,8 @@ class Company {
             }
 
             const companyCreated = await companyModel.create(
-                { name, direction, phone, city_id},
-                { fields: ["name", "direction", "phone", "city_id"] }
+                { name, direction, phone, email, city_id},
+                { fields: ["name", "direction", "phone", "email", "city_id"] }
             );
             return res.status(201).json({
                 status: 201,
@@ -76,7 +76,7 @@ class Company {
     }
     static async update(req, res){
         try {
-            const { name, direction, phone, city_id } = req.body;
+            const { name, direction, phone, email, city_id } = req.body;
             const companyId = await companyModel.findOne({
                 where: {
                     id: req.params.id
@@ -96,8 +96,8 @@ class Company {
                 }
             }
             const update = await companyId.update(
-                {name, direction, phone, city_id},
-                {fields: ["name", "direction", "phone", "city_id"]}
+                {name, direction, phone, email, city_id},
+                {fields: ["name", "direction", "phone", "email","city_id"]}
             )
             return res.status(201).json({
                 status: 201,

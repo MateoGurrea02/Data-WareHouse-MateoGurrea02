@@ -32,8 +32,76 @@
                 </li>
             </ul>
         </header>
-    
-        <h1>hola pt</h1>
+        <section class="companySection">
+            <article>
+                <div class="" id="bgOpacity">
+        
+                </div>
+                <div class="companyDivTitle">
+                    <h2>Compañías</h2>
+                    <button id="btnAddCompany">Agregar</button>
+                </div>
+                <div class="table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><h3>Nombre</h3></th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Correo</th>
+                                <th>Pais</th>
+                                <th>ID</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companyData">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="formAdd" id="addCompany">
+                    <i class="fas fa-times" id="btnCloseCreate"></i>
+                    <form action="" class="formStyle" >
+                        <div>
+                            <label for="nameCreate">Nombre</label>
+                            <input type="text" id="nameCreate">
+                            <label for="directionCreate">Dirección</label>
+                            <input type="text" id="directionCreate">
+                            <label for="phoneCreate">Telefono</label>
+                            <input type="text" id="phoneCreate">
+                            <label for="emailCreate">Correo</label>
+                            <input type="text" id="emailCreate">
+                            <label for="cityCreate">Ciudad</label>
+                            <select id="cityCreate">
+                                <option value="">Seleccione una ciudad</option>
+                            </select>
+                        </div> 
+                        <button id="btnCreateCompanyRequest">Crear</button>
+                    </form>
+                </div>
+                <div class="formAdd" id="updateCompany">
+                    <i class="fas fa-times" id="btnCloseUpdate"></i>
+                    <form action="" class="formStyle" >
+                        <div>
+                            <label for="companyIdUpdate">ID</label>
+                            <input type="text" id="companyIdUpdate" disabled>
+                            <label for="nameUpdate">Nombre</label>
+                            <input type="text" id="nameUpdate">
+                            <label for="directionUpdate">Dirección</label>
+                            <input type="text" id="directionUpdate">
+                            <label for="phoneUpdate">Telefono</label>
+                            <input type="text" id="phoneUpdate">
+                            <label for="emailUpdate">Correo</label>
+                            <input type="text" id="emailUpdate">
+                            <label for="cityUpdate">Ciudad</label>
+                            <select id="cityUpdate">
+                                <option value="">Seleccione una ciudad</option>
+                            </select>
+                        </div> 
+                        <button id="btnUpdateCompanyRequest">Editar</button>
+                    </form>
+                </div>
+            </article>
+        </section>
     </body>
     <script type="module" src="./js/company.js"></script>
 </html>

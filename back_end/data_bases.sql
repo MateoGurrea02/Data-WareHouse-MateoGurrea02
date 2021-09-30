@@ -46,6 +46,7 @@ create table companies(
 	name varchar(255) not null,
 	direction varchar(255),
 	phone varchar(19) not null,
+	email varchar(255) not null,
 	city_id int not null,
 	foreign key (city_id) references cities(id)
 );
