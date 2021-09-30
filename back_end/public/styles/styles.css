@@ -1,4 +1,4 @@
-article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
+article .formAdd .formStyle button, article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
   font-family: "Open Sans";
   font-size: 1em;
   cursor: pointer;
@@ -9,7 +9,7 @@ article .ulPadre button, section .artUserCreate .formUserCreate .button, section
   background-color: #1D72C2;
 }
 
-article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
+article .formAdd .formStyle button:hover, article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
   -webkit-box-shadow: black 1px 3px 5px;
           box-shadow: black 1px 3px 5px;
 }
@@ -153,6 +153,46 @@ article .formAdd {
   text-align: center;
   -webkit-box-shadow: black 1px 3px 5px;
           box-shadow: black 1px 3px 5px;
+}
+
+article .formAdd .formStyle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10em;
+  font-family: "Open Sans";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+article .formAdd .formStyle label {
+  display: block;
+  text-align: center;
+  padding-right: 0.8em;
+  padding-left: 0.8em;
+}
+
+article .formAdd .formStyle input {
+  font-family: "Open Sans";
+  padding: .5em;
+  padding-left: 1em;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+article .formAdd .formStyle select {
+  color: #1D72C2;
+  border-color: #1D72C2;
+  border-radius: 4px;
+  font-family: "Open Sans";
+  margin-left: 0.8em;
+}
+
+article .formAdd .formStyle button {
+  margin-left: 0.8em;
 }
 
 article .formAdd .fa-times {

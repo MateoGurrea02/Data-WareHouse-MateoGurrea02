@@ -45,15 +45,23 @@
             </ul>
             <div class="formAdd" id="agregarRegion">
                 <i class="fas fa-times" id="btnClose"></i>
-                <form action="">
+                <form action="" class="formStyle" >
                     <label for="region">Nombre de la Region</label>
                     <input type="text" name="region" id="region">
                     <button id="btnCrearRegionRequest">Crear</button>
                 </form>
             </div>
+            <div class="formAdd" id="editarRegion">
+                <i class="fas fa-times" id="btnRegionClose"></i>
+                <form action="" class="formStyle" >
+                    <label for="regionUpdate">Nombre de la region</label>
+                    <input type="text" name="region" id="regionUpdate">
+                    <button id="btnEditarRegionRequest">Editar</button>
+                </form>
+            </div>
             <div class="formAdd" id="agregarPais">
                 <i class="fas fa-times" id="btnPaisClose"></i>
-                <form action="">
+                <form action="" class="formStyle" >
                     <label for="regionPais">Region</label>
                     <input type="text" readonly id="regionPais">
                     <label for="pais">Nombre del Pais</label>
@@ -61,12 +69,30 @@
                     <button id="btnCrearPaisRequest">Crear</button>
                 </form>
             </div>
-            <div class="formAdd" id="editarRegion">
-                <i class="fas fa-times" id="btnRegionClose"></i>
-                <form action="">
-                    <label for="regionUpdate">Nombre de la region</label>
-                    <input type="text" name="region" id="regionUpdate">
-                    <button id="btnEditarRegionRequest">Editar</button>
+            <div class="formAdd" id="editarPais">
+                <i class="fas fa-times" id="btnEditarPaisClose"></i>
+                <form action="" class="formStyle" >
+                    <label for="paisUpdate">Nombre del Pais</label>
+                    <input type="text" id="paisUpdate">
+                    <button id="btnEditarPaisRequest">Editar</button>
+                </form>
+            </div>
+            <div class="formAdd" id="agregarCiudad">
+                <i class="fas fa-times" id="btnAgregarCiudadClose"></i>
+                <form action="" class="formStyle" >
+                    <label for="paisCiudad">Pais</label>
+                    <input type="text" readonly id="paisCiudad">
+                    <label for="agregarCiudadInput">Nombre de la ciudad</label>
+                    <input type="text" id="agregarCiudadInput">
+                    <button id="btnCrearCiudadRequest">Crear</button>
+                </form>
+            </div>
+            <div class="formAdd" id="editarCiudad">
+                <i class="fas fa-times" id="btnEditarCiudadClose"></i>
+                <form action="" class="formStyle" >
+                    <label for="cityUpdate">Nombre de la Ciudad</label>
+                    <input type="text" id="cityUpdate">
+                    <button id="btnEditarCiudadRequest">Editar</button>
                 </form>
             </div>
         </article>

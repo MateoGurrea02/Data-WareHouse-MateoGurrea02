@@ -1,5 +1,3 @@
-
-
 let profile =  localStorage.getItem('profile');
 let usersNav = document.getElementById('usersNav');
 let ulPadre = document.getElementById('ulPadre');
@@ -17,7 +15,17 @@ let regionPais = document.getElementById('regionPais');
 let btnPaisClose = document.getElementById('btnPaisClose');
 let editarRegion = document.getElementById('editarRegion');
 let regionUpdate = document.getElementById('regionUpdate');
-
+let agregarCiudadInput = document.getElementById('agregarCiudadInput');
+let agregarCiudad = document.getElementById('agregarCiudad');
+let btnAgregarCiudadClose = document.getElementById('btnAgregarCiudadClose');
+let paisCiudad = document.getElementById('paisCiudad');
+let selectRegionUpdate  = document.getElementById('selectRegionUpdate');
+let btnEditarPaisRequest = document.getElementById('btnEditarPaisRequest');
+let btnEditarPaisClose = document.getElementById('btnEditarPaisClose');
+let selectCountryUpdate = document.getElementById('selectCountryUpdate');
+let btnEditarCiudadRequest = document.getElementById('btnEditarCiudadRequest');
+let cityUpdate = document.getElementById('cityUpdate');
+let editarCiudad = document.getElementById('editarCiudad')
 if(profile != "Admin"){
     usersNav.style.display = "none";
 }
@@ -203,7 +211,83 @@ function renderCountries(response){
                         </span>
                         <ul class="cityList" id="country${response.data[i].id}"></ul>`
     regionUl.appendChild(countryLi);
-    }
+    
+
+    let btnCountryUpdate = document.getElementById(`btnCountryUpdate${response.data[i].id}`);
+    let btnCountryDelete = document.getElementById(`btnCountryDelete${response.data[i].id}`);
+    let btnAddCountry = document.getElementById(`btnPaisCity${response.data[i].id}`);
+
+
+    //funcion para crear ciudad
+    btnAddCountry.addEventListener('click', function(){
+        bgOpacity.classList.add('bgOpacity');
+        agregarCiudad.style.display = "block";
+        btnAddCountry.value = response.data[i].id;
+        paisCiudad.value = response.data[i].id;
+
+        //boton para hacer el request una vez ingresado el pais
+
+        btnCrearCiudadRequest.addEventListener('click', function(){
+            request('http://localhost:3000/api/city', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': jwt
+                },
+                body: {
+                    name: agregarCiudadInput.value,
+                    country_id: btnAddCountry.value
+                }
+            }).then(function(response){
+                console.log(response);
+                getCity();
+                bgOpacity.classList.remove('bgOpacity');
+                agregarCiudad.style.display = "none";
+            }).catch(function(error){
+                console.log(error);
+            })
+        })
+    })
+    //boton para cerrar menu de creacion de ciudad
+    btnAgregarCiudadClose.addEventListener('click', function(){
+        bgOpacity.classList.remove('bgOpacity');
+        agregarCiudad.style.display = "none";
+    })
+    //boton para borrar la ciudad
+    btnCountryDelete.addEventListener('click', function(){
+        deleteCountry(btnCountryDelete.value);
+        window.location.reload();
+    })
+    //funcion para editar el pais
+    btnCountryUpdate.addEventListener('click', function(){
+        bgOpacity.classList.add('bgOpacity');
+        editarPais.style.display = "block";
+        btnEditarPaisRequest.addEventListener('click', function(){
+            request(`http://localhost:3000/api/country/${btnCountryUpdate.value}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': jwt
+                },
+                body: {
+                    name: paisUpdate.value,
+                }
+            }).then(function(response){
+                console.log(response);
+                getCountries();
+                bgOpacity.classList.remove('bgOpacity');
+                editarPais.style.display = "none";
+            }).catch(function(error){
+                console.log(error);
+            })
+        })
+    })
+    //boton para cerrar menu de edicion de pais
+    btnEditarPaisClose.addEventListener('click', function(){
+        bgOpacity.classList.remove('bgOpacity');
+        editarPais.style.display = "none";
+    })
+}
 }
 //funcion para obtener las ciudades
 function getCity(){
@@ -234,7 +318,45 @@ function renderCity(response){
                         </span>
                         </div>`
     countryLi.appendChild(cityLi);
-    }
+
+    let btnCityUpdate = document.getElementById(`btnCityUpdate${response.data[i].id}`);
+    let btnCityDelete = document.getElementById(`btnCityDelete${response.data[i].id}`);
+
+    //funcion para borrar la ciudad
+    btnCityDelete.addEventListener('click', function(){
+        deleteCity(btnCityDelete.value);
+        window.location.reload();
+    })
+    //funcion para editar la ciudad
+    btnCityUpdate.addEventListener('click', function(){
+        bgOpacity.classList.add('bgOpacity');
+        editarCiudad.style.display = "block";
+        btnEditarCiudadRequest.addEventListener('click', function(){
+            request(`http://localhost:3000/api/city/${btnCityUpdate.value}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': jwt
+                },
+                body: {
+                    name: cityUpdate.value
+                }
+            }).then(function(response){
+                console.log(response);
+                getCity();
+                bgOpacity.classList.remove('bgOpacity');
+                editarCiudad.style.display = "none";
+            }).catch(function(error){
+                console.log(error);
+            })
+        })
+    })
+    //boton para cerrar menu de edicion de ciudad
+    btnEditarCiudadClose.addEventListener('click', function(){
+        bgOpacity.classList.remove('bgOpacity');
+        editarCiudad.style.display = "none";
+    })
+}
 }
 
 addRegion.addEventListener('click', function(){
@@ -267,6 +389,33 @@ function addRegionRequest(){
 }
 function deleteRegion(id){
     request(`http://localhost:3000/api/region/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': jwt
+        }
+    }).then(function(response){
+        console.log(response);
+    }).catch(function(error){
+        console.log(error);
+    })
+}
+
+function deleteCountry(id){
+    request(`http://localhost:3000/api/country/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': jwt
+        }
+    }).then(function(response){
+        console.log(response);
+    }).catch(function(error){
+        console.log(error);
+    })
+}
+function deleteCity(id){
+    request(`http://localhost:3000/api/city/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

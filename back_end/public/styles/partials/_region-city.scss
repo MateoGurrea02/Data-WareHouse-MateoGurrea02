@@ -25,6 +25,38 @@ article{
         background-color: white;
         text-align: center;
         box-shadow: black 1px 3px 5px;
+        .formStyle{
+            display: flex;
+            margin-top: 10em;
+            font-family: $openSans;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+            label{
+                display: block;
+                text-align: center;
+                padding-right: 0.8em;
+                padding-left: 0.8em;
+            }
+            input{
+                font-family: $openSans;
+                padding: .5em;
+                padding-left: 1em;
+                border: 1px solid $greyInput;
+                border-radius: 4px;
+            }
+            select{
+                color: $blueFrance;
+                border-color: $blueFrance;
+                border-radius: 4px;
+                font-family: $openSans;
+                margin-left: 0.8em;
+            }
+            button{
+                @extend %button;
+                margin-left: 0.8em;
+            }
+        }
         .fa-times{
             position: absolute;
             top: 1em;
