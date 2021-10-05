@@ -496,7 +496,7 @@ header .navigation a {
 }
 
 .artContacts .contactsContainer table td .interestDiv .interestBarEmpty .interestBarFill {
-  width: 100%;
+  width: 0%;
   background-color: #DE0028;
   border-radius: 10px;
   height: 0.8em;

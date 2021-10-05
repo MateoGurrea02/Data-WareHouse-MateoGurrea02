@@ -5,6 +5,7 @@ const cityModel = require('../models/cities');
 const contact_channelModel = require('../models/contact_channel');
 const preferenceModel = require('../models/preferences');
 const contact_channel_lineModel = require('../models/contact_channel_line');
+const regionModel = require('../models/regions');
 
 class Contact {
     static async getAll(req, res) {
@@ -13,6 +14,16 @@ class Contact {
                 include: [{
                     model: cityModel,
                     as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
                     attributes: {
                         exclude: ['country_id']
                     }
@@ -65,6 +76,16 @@ class Contact {
                 include: [{
                     model: cityModel,
                     as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
                     attributes: {
                         exclude: ['country_id']
                     }
