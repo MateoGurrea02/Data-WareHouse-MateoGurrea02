@@ -11,10 +11,10 @@ class Contact {
         try {
             const contact = await contactModel.findAll({
                 include: [{
-                    model: countryModel,
-                    as: 'country',
+                    model: cityModel,
+                    as: 'city',
                     attributes: {
-                        exclude: ['region_id']
+                        exclude: ['country_id']
                     }
                 },{
                     model: companyModel,
@@ -42,7 +42,7 @@ class Contact {
                     }
                 }
             ],attributes: {
-                    exclude: ['company_id', 'country_id']
+                    exclude: ['company_id', 'city_id']
                 }
             });
             return res.json({
@@ -63,10 +63,10 @@ class Contact {
                     id: req.params.id
                 },
                 include: [{
-                    model: countryModel,
-                    as: 'country',
+                    model: cityModel,
+                    as: 'city',
                     attributes: {
-                        exclude: ['region_id']
+                        exclude: ['country_id']
                     }
                 },{
                     model: companyModel,
@@ -110,13 +110,26 @@ class Contact {
     }
     static async create(req, res) {
         try {
-            const { name, surname, email, company_id, position_company} = req.body;
-            if (!name|| !surname||!email || !company_id || !position_company) {
+            const { name, surname, email, company_id, position_company, city_id, direction} = req.body;
+            if (!name|| !surname||!email || !company_id || !position_company || !city_id) {
                 return res.status(422).json({
                     status: 422,
-                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\" and \"position_company\" are required'
+                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\", \"city_id\" and \"position_company\" are required'
                 });
             }
+
+            const cityFound = await cityModel.findOne({
+                where: {
+                    id: city_id
+                }
+            });
+            if (!cityFound) {
+                return res.status(422).json({
+                    status: 422,
+                    error: 'The country not found'
+                });
+            }
+
             const company = await companyModel.findOne({    
                 where: {
                     id: company_id
@@ -130,8 +143,8 @@ class Contact {
             }
 
             const contactCreated = await contactModel.create(
-                { name, surname, email, company_id, position_company},
-                { fields: ["name", "surname", "email", "company_id","position_company"] }
+                { name, surname, email, company_id, position_company, city_id, direction},
+                { fields: ["name", "surname", "email", "company_id","position_company","city_id","direction"] }
             );
             return res.status(201).json({
                 status: 201,

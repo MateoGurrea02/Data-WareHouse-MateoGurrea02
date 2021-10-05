@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 const connection = require('../connection');
-const countryModel = require('./country');
+const cityModel = require('./cities');
 const contact_channel_lineModel = require('./contact_channel_line');  
 const companyModel = require('./company')
 
@@ -26,7 +26,7 @@ const model = connection.define(
         position_company:{
             type: DataTypes.STRING
         },
-        country_id: {
+        city_id: {
             type: DataTypes.INTEGER
         }
     },{timestamps: false}
@@ -34,7 +34,7 @@ const model = connection.define(
 
 
 model.belongsTo(companyModel , {as:'company', foreignKey: 'company_id'});
-model.belongsTo(countryModel , {as:'country', foreignKey: 'country_id'});
+model.belongsTo(cityModel , {as:'city', foreignKey: 'city_id'});
 model.hasMany(contact_channel_lineModel, {as: 'contact_channel_line', foreignKey: 'contact_id'});
 
 

@@ -9,7 +9,7 @@ function isUser(req, res, next) {
     const [token] = headerAuth.split(' ');
     try {
         const tokenDecoded = jwt.verify( token, process.env.JWT_SECRET);
-        const isAdmin = tokenDecoded.user.profile === 'Basico' || tokenDecoded.user.profile === 'Admin';
+        const isAdmin = tokenDecoded.user.profile === 'Básico' || tokenDecoded.user.profile === 'Admin';
         if(!isAdmin){
             return res.status('401').json({ message: 'You not authorized' });
         }

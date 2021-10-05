@@ -369,7 +369,7 @@ btnClose.addEventListener('click', function(){
     agregarRegion.style.display = "none"
 })
 
-//funcion para crear una region nueva
+//request para crear una region nueva
 function addRegionRequest(){ 
     request('http://localhost:3000/api/region', {
         method: 'POST',
@@ -387,6 +387,7 @@ function addRegionRequest(){
         console.log(error);
     })
 }
+//request para borrar una region
 function deleteRegion(id){
     request(`http://localhost:3000/api/region/${id}`, {
         method: 'DELETE',
@@ -400,7 +401,7 @@ function deleteRegion(id){
         console.log(error);
     })
 }
-
+//request para borrar un pais
 function deleteCountry(id){
     request(`http://localhost:3000/api/country/${id}`, {
         method: 'DELETE',
@@ -414,6 +415,7 @@ function deleteCountry(id){
         console.log(error);
     })
 }
+//request para borrar una ciudad
 function deleteCity(id){
     request(`http://localhost:3000/api/city/${id}`, {
         method: 'DELETE',

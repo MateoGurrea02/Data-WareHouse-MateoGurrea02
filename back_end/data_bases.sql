@@ -55,12 +55,14 @@ create table contacts(
 	name varchar(255) not null,
 	surname varchar(255) not null,
 	email varchar(255) not null,
+	direction varchar(255),
 	company_id int not null,
 	position_company varchar(255) not null,
-	country_id int not null,
+	city_id int not null,
 	foreign key (company_id) references companies(id),
-	foreign key (country_id) references countries(id)
+	foreign key (city_id) references cities(id)
 );
+
 
 create table contact_channel_lines(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -118,4 +120,4 @@ insert into contacts values(null, "mateo", "gurrea", "mateo@gmail.com", 1, "Deve
 
 insert into contact_channel_lines values(null, 1, 1,"33854098900", 2);
 
-insert into users values(null,"mateo", "gurrea", "admin@gmail.com", 1, "123");
+insert into users values(null,"admin", "admin", "admin@gmail.com", 1, "123");

@@ -1,4 +1,4 @@
-.companySection article .companyDivTitle button, .companySection article .formAdd .formStyle button, article .formAdd .formStyle button, article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
+.companySection article .companyDivTitle button, .companySection article .formAdd .formStyle button, .artContacts .searchContainer .btnAddContact, article .formAdd .formStyle button, article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
   font-family: "Open Sans";
   font-size: 1em;
   cursor: pointer;
@@ -9,7 +9,7 @@
   background-color: #1D72C2;
 }
 
-.companySection article .companyDivTitle button:hover, article .formAdd .formStyle button:hover, article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
+.companySection article .companyDivTitle button:hover, .artContacts .searchContainer .btnAddContact:hover, article .formAdd .formStyle button:hover, article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
   -webkit-box-shadow: black 1px 3px 5px;
           box-shadow: black 1px 3px 5px;
 }
@@ -251,6 +251,257 @@ header .navigation a {
   font-size: 1.5em;
 }
 
+.artContacts {
+  display: block;
+  width: 100vw;
+  margin-left: 6em;
+}
+
+.artContacts .contactTitle {
+  margin-bottom: .9em;
+}
+
+.artContacts .searchContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 5em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.artContacts .searchContainer .btnAddContact {
+  padding-top: .6em;
+  padding-bottom: .6em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.artContacts .searchContainer .searching {
+  position: relative;
+}
+
+.artContacts .searchContainer .searching input {
+  padding: 1em;
+  padding-left: 2em;
+  padding-right: 21em;
+  border: 1px solid #ced4da;
+  border-radius: 7px;
+  font-family: "Open Sans";
+}
+
+.artContacts .searchContainer .searching .fa-sort-down {
+  position: absolute;
+  left: 85%;
+  top: 23%;
+  color: grey;
+}
+
+.artContacts .searchContainer .searching label {
+  border: 1px solid #ced4da;
+  border-radius: 7px;
+  padding: .6em 1em;
+  padding-bottom: .8em;
+}
+
+.artContacts .searchContainer .searching label i {
+  text-align: center;
+  color: #0683F9;
+}
+
+.artContacts .contactsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90vw;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.artContacts .contactsContainer table {
+  width: 100%;
+  text-align: left;
+  border: 1px solid #ced4da;
+}
+
+.artContacts .contactsContainer table th {
+  border-bottom: 1px solid #ced4da;
+  padding-left: 1em;
+  font-weight: 400;
+  font-size: .9em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.artContacts .contactsContainer table th:last-child {
+  text-align: center;
+  padding-right: 1em;
+  width: 5%;
+}
+
+.artContacts .contactsContainer table th:first-child {
+  width: 5%;
+  text-align: center;
+  padding-left: 0;
+}
+
+.artContacts .contactsContainer table th:nth-child(2) {
+  width: 20%;
+}
+
+.artContacts .contactsContainer table th:nth-child(3) {
+  width: 15%;
+}
+
+.artContacts .contactsContainer table th:nth-child(4) {
+  width: 10%;
+}
+
+.artContacts .contactsContainer table th:nth-child(5) {
+  width: 10%;
+}
+
+.artContacts .contactsContainer table th:nth-child(6) {
+  width: 15%;
+}
+
+.artContacts .contactsContainer table th i {
+  color: grey;
+  font-size: 20px;
+}
+
+.artContacts .contactsContainer table td {
+  padding-top: 1em;
+  font-size: .9em;
+  font-weight: 400;
+}
+
+.artContacts .contactsContainer table td i {
+  color: grey;
+  font-size: 20px;
+}
+
+.artContacts .contactsContainer table td:last-child {
+  text-align: center;
+  padding-right: 1em;
+  width: 5%;
+}
+
+.artContacts .contactsContainer table td:first-child {
+  width: 5%;
+  text-align: center;
+}
+
+.artContacts .contactsContainer table td:nth-child(2) {
+  width: 20%;
+}
+
+.artContacts .contactsContainer table td:nth-child(3) {
+  width: 15%;
+}
+
+.artContacts .contactsContainer table td:nth-child(4) {
+  width: 10%;
+}
+
+.artContacts .contactsContainer table td:nth-child(5) {
+  width: 10%;
+}
+
+.artContacts .contactsContainer table td:nth-child(6) {
+  width: 15%;
+}
+
+.artContacts .contactsContainer table td .fa-trash {
+  color: #1D72C2;
+}
+
+.artContacts .contactsContainer table td .fa-trash:hover {
+  color: #DE0028;
+}
+
+.artContacts .contactsContainer table td .contactName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.artContacts .contactsContainer table td .contactName img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+}
+
+.artContacts .contactsContainer table td .contactName span {
+  margin-left: 1em;
+}
+
+.artContacts .contactsContainer table td .contactName span h3 {
+  font-weight: 400;
+}
+
+.artContacts .contactsContainer table td .contactName span p {
+  font-size: .8em;
+  color: grey;
+}
+
+.artContacts .contactsContainer table td .contactCountry h3 {
+  font-weight: 400;
+}
+
+.artContacts .contactsContainer table td .contactCountry p {
+  font-size: .8em;
+  color: grey;
+}
+
+.artContacts .contactsContainer table td .contactPreferredChannel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.artContacts .contactsContainer table td .contactPreferredChannel h3 {
+  padding: 0.4em;
+  margin-left: 0.4em;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #0683F9;
+  background-color: #E8E8E8;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.artContacts .contactsContainer table td .interestDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.artContacts .contactsContainer table td .interestDiv .interestBarEmpty {
+  margin-top: .3em;
+  margin-left: 1em;
+  width: 60%;
+  height: 0.8em;
+  background-color: #ced4da;
+  border-radius: 10px;
+}
+
+.artContacts .contactsContainer table td .interestDiv .interestBarEmpty .interestBarFill {
+  width: 100%;
+  background-color: #DE0028;
+  border-radius: 10px;
+  height: 0.8em;
+}
+
 .bgOpacity {
   background-color: black;
   height: 100%;
@@ -264,7 +515,8 @@ header .navigation a {
 
 article {
   width: 80%;
-  margin: 2em;
+  margin-top: 2em;
+  margin-right: 5em;
 }
 
 article .formAdd {

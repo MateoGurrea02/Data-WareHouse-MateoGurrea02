@@ -1,0 +1,199 @@
+.artContacts{
+    display: block;
+    width: 100vw;
+    margin-left: 6em;
+    .contactTitle{
+        margin-bottom: .9em;
+    }
+    .searchContainer{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5em;
+        text-align: center;
+        vertical-align: middle;
+        .btnAddContact{
+            padding-top: .6em;
+            padding-bottom: .6em;
+            padding-left: 2em;
+            padding-right: 2em;      
+            @extend %button;
+        }
+        .searching{
+            position: relative;
+            input{
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 21em;
+                border: 1px solid $greyInput;
+                border-radius: 7px;
+                font-family: $openSans;
+            }
+            .fa-sort-down{
+                position: absolute;
+                left: 85%;
+                top: 23%;
+                color: $grey;
+            }
+            label{
+                border: 1px solid $greyInput;
+                border-radius: 7px;
+                padding: .6em 1em;
+                padding-bottom: .8em;
+                i{
+                    text-align: center;
+                    color: $blue;
+                }
+            }
+        }
+
+    }
+    .contactsContainer{
+        display:flex;
+        width: 90vw;
+        flex-wrap: wrap;
+        table{
+            width: 100%;
+            text-align: left;
+            border: 1px solid $greyInput;
+            th{
+                border-bottom: 1px solid $greyInput;
+                padding-left: 1em;
+                font-weight: $regular;
+                font-size: .9em;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                //tamños de las celdas de la tabla de contactos
+                &:last-child{
+                    text-align: center;
+                    padding-right: 1em;
+                    width: 5%;
+                }
+                &:first-child{
+                    width: 5%;
+                    text-align: center;
+                    padding-left: 0;
+                }
+                &:nth-child(2){
+                    width: 20%;
+                }
+                &:nth-child(3){
+                    width: 15%;
+                }
+                &:nth-child(4){
+                    width: 10%;
+                }
+                &:nth-child(5){
+                    width: 10%;
+                }
+                &:nth-child(6){
+                    width: 15%;
+                }
+                i{
+                    color: $grey;
+                    font-size: 20px;
+                }
+            }
+            td{
+                padding-top: 1em;
+                font-size: .9em;
+                font-weight: $regular;
+                i{
+                    color: $grey;
+                    font-size: 20px;
+                }
+                //tamños de las celdas de la tabla de contactos
+                &:last-child{
+                    text-align: center;
+                    padding-right: 1em;
+                    width: 5%;
+                }
+                &:first-child{
+                    width: 5%;
+                    text-align: center;
+                }
+                &:nth-child(2){
+                    width: 20%;
+                }
+                &:nth-child(3){
+                    width: 15%;
+                }
+                &:nth-child(4){
+                    width: 10%;
+                }
+                &:nth-child(5){
+                    width: 10%;
+                }
+                &:nth-child(6){
+                    width: 15%;
+                }
+                .fa-trash{
+                    color: $blueFrance;
+                    &:hover{
+                        color: $pink;
+                    }
+                }
+                .contactName{
+                    display: flex;
+                    img{
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 100px;
+                    }
+                    span{
+                        margin-left: 1em;
+                        h3{
+                            font-weight: $regular;
+                        }
+                        p{
+                            font-size: .8em;
+                            color: $grey;
+                        }
+                    }
+                }
+                .contactCountry{
+                    h3{
+                        font-weight: $regular;
+                    }
+                    p{
+                        font-size: .8em;
+                        color: $grey;
+                    }
+                }
+                .contactPreferredChannel{
+                    display: flex;
+                    flex-wrap: wrap;
+                    h3{
+                        padding: 0.4em;
+                        margin-left: 0.4em;
+                        font-size: 0.9em;
+                        font-weight: $regular;
+                        color: $blue;
+                        background-color: $whiteBone;
+                        border: 1px solid $greyInput;
+                        border-radius: 4px;
+                    }
+                }
+                .interestDiv{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    .interestBarEmpty{
+                        margin-top: .3em;
+                        margin-left: 1em;
+                        width: 60%;
+                        height: 0.8em;
+                        background-color: $greyInput;
+                        border-radius: 10px;
+                        .interestBarFill{
+                            width:100%;
+                            background-color: $pink;
+                            border-radius:10px;
+                            height: 0.8em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+                
