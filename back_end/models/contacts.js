@@ -20,6 +20,9 @@ const model = connection.define(
         direction: {
             type: DataTypes.STRING
         },
+        interest: {
+            type: DataTypes.INTEGER
+        },
         company_id: {
             type: DataTypes.INTEGER
         },

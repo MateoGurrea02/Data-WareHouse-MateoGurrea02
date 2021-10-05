@@ -56,12 +56,14 @@ create table contacts(
 	surname varchar(255) not null,
 	email varchar(255) not null,
 	direction varchar(255),
+	interest int not null,
 	company_id int not null,
 	position_company varchar(255) not null,
 	city_id int not null,
 	foreign key (company_id) references companies(id),
 	foreign key (city_id) references cities(id)
 );
+
 
 
 create table contact_channel_lines(

@@ -110,11 +110,11 @@ class Contact {
     }
     static async create(req, res) {
         try {
-            const { name, surname, email, company_id, position_company, city_id, direction} = req.body;
-            if (!name|| !surname||!email || !company_id || !position_company || !city_id) {
+            const { name, surname, email, company_id, position_company, city_id, direction, interest} = req.body;
+            if (!name|| !surname||!email || !company_id || !position_company || !city_id || !interest) {
                 return res.status(422).json({
                     status: 422,
-                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\", \"city_id\" and \"position_company\" are required'
+                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\", \"city_id\", \"interest\" and \"position_company\" are required'
                 });
             }
 
@@ -143,8 +143,8 @@ class Contact {
             }
 
             const contactCreated = await contactModel.create(
-                { name, surname, email, company_id, position_company, city_id, direction},
-                { fields: ["name", "surname", "email", "company_id","position_company","city_id","direction"] }
+                { name, surname, email, company_id, position_company, city_id, direction,interest},
+                { fields: ["name", "surname", "email", "company_id","position_company","city_id","direction","interest"] }
             );
             return res.status(201).json({
                 status: 201,
@@ -159,15 +159,15 @@ class Contact {
     }
     static async update(req, res) {
         try {
-            const { name, surname, email, company_id, position_company} = req.body;
+            const { name, surname, email, company_id, position_company, interest,direction} = req.body;
             const contactId = await contactModel.findOne({
                 where: {
                     id: req.params.id
                 }
             });
             const contactUpdated = await contactId.update(
-                { name, surname, email, company_id, position_company},
-                { fields: ["name", "surname", "email", "company_id","position_company"] }
+                { name, surname, email, company_id, position_company, interest, direction},
+                { fields: ["name", "surname", "email", "company_id","position_company", "interest","direction"] }
             );
             return res.status(200).json({
                 status: 200,
