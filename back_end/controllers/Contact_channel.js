@@ -51,6 +51,34 @@ class Contact_channel{
             })
         }
     }
+    static async getAll(req, res){
+        try{
+            const contact_channel = await contact_channelModel.findAll();
+            return res.status(200).json({
+                status: 200,
+                data: contact_channel
+            });
+        }catch(err){
+            return res.status(500).json({
+                status: 500,
+                error: err
+            })
+        }
+    }
+    static async getPreferences(req, res){
+        try{
+            const preference = await preferenceModel.findAll();
+            return res.status(200).json({
+                status: 200,
+                data: preference
+            });
+        }catch(err){
+            return res.status(500).json({
+                status: 500,
+                error: err
+            })
+        }
+    }
 }
 
 module.exports = Contact_channel;

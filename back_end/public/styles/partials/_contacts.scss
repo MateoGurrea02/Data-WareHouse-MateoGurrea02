@@ -173,27 +173,264 @@
                         border-radius: 4px;
                     }
                 }
-                .interestDiv{
-                    display: flex;
-                    justify-content: center;
-                    width: 100%;
-                    .interestBarEmpty{
-                        margin-top: .3em;
+            }
+        }
+    }
+}
+
+.interestDiv{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.interestBarEmpty{
+    margin-top: .3em;
+    margin-left: 1em;
+    width: 60%;
+    height: 0.8em;
+    background-color: $greyInput;
+    border-radius: 10px;
+    .interestBarFill{
+        width:0%;
+        background-color: $pink;
+        border-radius:10px;
+        height: 0.8em;
+    }
+}
+
+.artAddContact{
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 5em;
+    left: 16em;
+    right: auto;
+    width: 70vw;
+    height: 80vh;
+    background-color: white;
+    font-family: $openSans;
+    .primaryForm{
+        display: block;
+        .primaryFromTitle{
+            display: flex;
+            background-color: $blueFrance;
+            justify-content: space-between;
+            padding: 1em;
+            color: $white;
+            padding-bottom: 7em;
+            i{
+                cursor: pointer;
+                font-size: 1.5em;
+                color: $white;
+            }
+        }
+        .primaryFormCreate{
+            display: flex;
+            form{
+                display: flex;
+                justify-content: center;
+                vertical-align: middle;
+                position: absolute;
+                top: 5em;
+                margin-left: 1.5em;
+                margin-right: 1.5em;
+                border: 4px solid $blue;
+                border-radius: 7px;
+                background-color: $white;
+                padding: 1em;
+                div{
+                    display: block;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    text-align: left;
+                    &:first-child{
+                        margin-right: 2em;
+                    }
+                    
+                    img{
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 100px;
+                        border: $blue 4px solid;
+                    }
+                    .fa-camera{
+                        position: absolute;
+                        color: $white;
+                        top: 5.5em;
+                        left: 5.5em;
+                        padding: 3px;
+                        border-radius: 100px;
+                        border: 2px solid $white;
+                        background-color: $blue;
+                    }
+                    label{
+                        font-size: .8em;
                         margin-left: 1em;
-                        width: 60%;
-                        height: 0.8em;
-                        background-color: $greyInput;
-                        border-radius: 10px;
-                        .interestBarFill{
-                            width:0%;
-                            background-color: $pink;
-                            border-radius:10px;
-                            height: 0.8em;
+                        font-weight: $regular;
+                        color: $black;
+                        font-family: $openSans;
+                        &::after{
+                            content: "*";
+                            color: $pink;
                         }
+                    }
+                    input{
+                        font-family:$openSans;
+                        font-family: $openSans;
+                        margin-top: .6em;
+                        margin-left: 1em;
+                        padding: .5em;
+                        padding-left: 1em;
+                        padding-right: 3em;
+                        border: 1px solid $greyInput;
+                        border-radius: 4px;
+                    }
+                    select{
+                        padding: .5em;
+                        margin-top: .6em;
+                        color: $blueFrance;
+                        border-color: $blueFrance;
+                        border-radius: 4px;
+                        font-family: $openSans;
+                        margin-left: 0.8em;
                     }
                 }
             }
         }
     }
-}
+    .secondaryForm{
+        display: flex;
+        padding-top: 6em;
+        width: 80%;
+        margin-left: 2em;
+        margin-right: 2em;
+        .secondaryFormCreate{
+            display: flex;
+            div{
+                display: block;
+                label{
+                    &::after{
+                        content: "*";
+                        color: $pink;
+                    }
+                    margin-left: .8em;
+                    .interestBarEmpty{
+                        margin-top: .9em;
+                        width: 100%;
+                    }
+                }
+                &:nth-child(5){
+                    label{
+                        &::after{
+                            content: "";
+                            color: $pink;
+                        }
+                    }
+                }
+                select{
+                    padding: .5em;
+                    margin-top: .6em;
+                    color: $blueFrance;
+                    border-color: $blueFrance;
+                    border-radius: 4px;
+                    font-family: $openSans;
+                    margin-left: 0.8em;
+                }
+                input{
+                    font-family:$openSans;
+                    font-family: $openSans;
+                    margin-top: .6em;
+                    margin-left: 1em;
+                    padding: .5em;
+                    padding-left: 1em;
+                    padding-right: 3em;
+                    border: 1px solid $greyInput;
+                    border-radius: 4px;
+                }
+                p{
+                    padding-left: 1.8em;
+                }
+            }
+            .interestDiv{
+                display: flex;
+                justify-content: center;
+                max-width: min-content;
+                height: 3em;
+                margin-top: -.4em;
+                .interestBarEmpty{
+                    width: 15em;
+                    margin-top: 1.4em;
+                }
                 
+            }
+        }
+    }
+    .contactChannelForm{
+        display: flex;
+        padding-top: 3em;
+        width: 50%;
+        margin-left: 2em;
+        margin-right: 2em;
+        form{
+            display: flex;
+            div{
+                display: block;
+                label{
+                    padding-left: .8em;
+                    font-family: $openSans;
+                }
+                select{
+                    padding: .5em;
+                    margin-top: .6em;
+                    color: $blueFrance;
+                    border-color: $blueFrance;
+                    border-radius: 4px;
+                    font-family: $openSans;
+                    margin-left: 0.8em;
+                }
+                input{
+                    font-family:$openSans;
+                    margin-top: .6em;
+                    margin-left: 1em;
+                    padding: .6em;
+                    padding-left: 1em;
+                    padding-right: 3em;
+                    border: 1px solid $greyInput;
+                    border-radius: 4px;
+                }
+                button{
+                    @extend %button;
+                    width: 10em;
+                    padding: .38em;
+                    margin-top: 1.85em;
+                    text-align: center;
+                    margin-left: 1em;
+                    i{
+                        margin-right: .4em;
+                    }
+                }
+            }
+        }
+    }
+    .saveCancelDiv{
+        display: flex;
+        position: absolute;
+        right: 2em;
+        bottom:2em;
+        .btnSaveContact{
+            @extend %button;
+            background-color: $green;
+            border-color: $green;
+            padding: .8em;
+            padding-left: 2em;
+            padding-right: 2em;
+        }
+        .btnCancelContact{
+            @extend %button;
+            padding: .8em;
+            padding-left: 2em;
+            padding-right: 2em;
+            margin-right: 1em;
+        }
+    }
+}

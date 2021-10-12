@@ -56,7 +56,7 @@ create table contacts(
 	surname varchar(255) not null,
 	email varchar(255) not null,
 	direction varchar(255),
-	interest int not null,
+	interest int not null default 0,
 	company_id int not null,
 	position_company varchar(255) not null,
 	city_id int not null,

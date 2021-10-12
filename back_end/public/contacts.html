@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/c27ca5b0e1.js" crossorigin="anonymous"></script>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 
 </head>
 
@@ -35,6 +35,9 @@
         </ul>
     </header>
     <section>
+        <div class="" id="bgOpacity">
+        
+        </div>
         <article class="artContacts">
             <h2 class="contactTitle">Contactos</h2>
             <div class="searchContainer">
@@ -44,7 +47,7 @@
                     <label for="searchInput"><i class="fas fa-search"></i></label>
                 </div>
                 <div>
-                    <button class="btnAddContact">Agregar Contacto</button>
+                    <button class="btnAddContact" id="btnAddContact">Agregar Contacto</button>
                 </div>
             </div>
             <div class="contactsContainer">
@@ -60,6 +63,124 @@
                         <th>Acciones</th>
                     </tr>
                 </table>
+            </div>
+        </article>
+        <article class="artAddContact" id="artAddContact">
+            <div class="primaryForm">
+                <div class="primaryFromTitle">
+                    <h2>Nuevo Contacto</h2>
+                    <i class="fas fa-times" id="btnCloseArtContactAdd"></i>
+                </div>
+                <div class="primaryFormCreate">
+                    <form action="">
+                        <div>
+                            <img src="./images/descarga.png" alt="">
+                            <!-- <span class="camera"> -->
+                            <i class="fas fa-camera"></i>
+                            <!-- </span> -->
+                        </div>
+                        <div>
+                            <label for="nameContactCreate">Nombre</label>
+                            <input type="text" id="nameContactCreate">
+                        </div>
+                        <div>
+                            <label for="surnameContactCreate">Apellido</label>
+                            <input type="text" id="surnameContactCreate">
+                        </div>
+                        <div>
+                            <label for="positionContactCreate">Cargo</label>
+                            <input type="text" id="positionContactCreate">
+                        </div>
+                        <div>
+                            <label for="emailContactCreate">Correo Electronico</label>
+                            <input type="email" id="emailContactCreate">
+                        </div>
+                        <div>
+                            <label for="companyContactCreate">Compañia</label>
+                            <select name="" id="companyContactCreate">
+                                <option value="">Seleciona Una Compañia</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="secondaryForm">
+                <form action="" class="secondaryFormCreate">
+                    <div>
+                        <label for="regionContact">Region</label>
+                        <select name="" id="regionContact">
+                            <option value="">Selecciona Una Region</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="countryContact">Pais</label>
+                        <select name="" id="countryContact">
+                            <option value="">Selecciona Un Pais</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="cityContact">Ciudad</label>
+                        <select name="" id="cityContact">
+                            <option value="">Selecciona Una Ciudad</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="directionContactCreate">Drireccion</label>
+                        <input type="text" id="directionContactCreate">
+                    </div>
+                    <div>
+                        <p>Interes</p>
+                        <div class="interestDiv">
+                            <label for="interestContactCreate">
+                                <div class="interestBarEmpty">
+                                    <div id="interestBarFill" class="interestBarFill" >
+
+                                    </div>
+                                </div>
+                            </label>
+                            <select name="" id="interestContactCreate">
+                                <option value="0">0%</option>
+                                <option value="25">25%</option>
+                                <option value="50">50%</option>
+                                <option value="75">75%</option>
+                                <option value="100">100%</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="contactChannelForm">
+                <form action="">
+                    <div>
+                        <label for="contactChannelCreate">Canal de Contacto</label>
+                        <select name="" id="contactChannelCreate">
+                            <option value="">Selecciona Un Canal</option>
+                            <option value="1">WhatsApp</option>
+                            <option value="2">Twitter</option>
+                            <option value="3">Facebook</option>
+                            <option value="4">Telefono</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="informationConctactChannelCreate">Informacion de Contacto</label>
+                        <input type="text" id="informationConctactChannelCreate" placeholder="@ejemplo">
+                    </div>
+                    <div>
+                        <label for="preferenceContactChannelCreate">Preferencia</label>
+                        <select name="" id="preferenceContactChannelCreate">
+                            <option value="1">Sin Preferencia</option>
+                            <option value="2">Canal Favorito</option>
+                            <option value="3">No molestar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button><i class="fas fa-plus"></i>Agregar Canal</button>
+                    </div>
+                </form>
+            </div>
+            <div class="saveCancelDiv">
+                <button class="btnCancelContact" id="btnCancelContact">Cancelar</button>
+                <button class="btnSaveContact" id="btnSaveContact">Guardar Contacto</button>
             </div>
         </article>
     </section>

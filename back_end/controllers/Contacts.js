@@ -132,10 +132,10 @@ class Contact {
     static async create(req, res) {
         try {
             const { name, surname, email, company_id, position_company, city_id, direction, interest} = req.body;
-            if (!name|| !surname||!email || !company_id || !position_company || !city_id || !interest) {
+            if (!name|| !surname||!email || !company_id || !position_company || !city_id) {
                 return res.status(422).json({
                     status: 422,
-                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\", \"city_id\", \"interest\" and \"position_company\" are required'
+                    error: 'The input \"name\", \"surname\", \"email\", \"company_id\", \"city_id\" and \"position_company\" are required'
                 });
             }
 

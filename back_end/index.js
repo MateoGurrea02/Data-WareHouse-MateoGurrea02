@@ -75,6 +75,8 @@ app.delete('/api/contact/:id', isBasico, existContact,ContactController.delete);
 
 //Endpoints for Contacts_channel
 app.post('/api/contact_channel', isBasico, ContactChannelController.add);
+app.get('/api/contact_channel', isBasico, ContactChannelController.getAll);
+app.get('/api/contact_channel/preferences', isBasico, ContactChannelController.getPreferences);
 
 //Endpoints for Companies
 app.get('/api/company', isBasico, CompanyController.getAll);
