@@ -72,11 +72,19 @@ app.get('/api/contact', isBasico, ContactController.getAll);
 app.post('/api/contact', isBasico, ContactController.create);
 app.patch('/api/contact/:id', isBasico, existContact,ContactController.update);
 app.delete('/api/contact/:id', isBasico, existContact,ContactController.delete);
+app.get('/api/contact/search/name/:name', isBasico,ContactController.getContactByName);
+app.get('/api/contact/search/company/:company_id', isBasico,ContactController.getContactByCompany);
+app.get('/api/contact/search/country/:country_id', isBasico,ContactController.getContactByCountry);
+app.get('/api/contact/search/position/:position', isBasico,ContactController.getContactByPosition);
+app.get('/api/contact/search/interest/:interest', isBasico,ContactController.getContactByInterest);
+app.get('/api/contact/search/region/:region_id', isBasico,ContactController.getContactByRegion);
 
 //Endpoints for Contacts_channel
 app.post('/api/contact_channel', isBasico, ContactChannelController.add);
 app.get('/api/contact_channel', isBasico, ContactChannelController.getAll);
 app.get('/api/contact_channel/preferences', isBasico, ContactChannelController.getPreferences);
+app.get('/api/contactChannelLine', isBasico, ContactChannelController.getAllContactChannelLines);
+app.patch('/api/contactChannel/:id', isBasico, ContactChannelController.updateContactChannel);
 
 //Endpoints for Companies
 app.get('/api/company', isBasico, CompanyController.getAll);

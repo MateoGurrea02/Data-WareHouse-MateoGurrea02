@@ -1,4 +1,4 @@
-.companySection article .companyDivTitle button, .companySection article .formAdd .formStyle button, .artContacts .searchContainer .btnAddContact, .artAddContact .contactChannelForm form div button, .artAddContact .saveCancelDiv .btnSaveContact, .artAddContact .saveCancelDiv .btnCancelContact, article .formAdd .formStyle button, article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
+.companySection article .companyDivTitle button, .companySection article .formAdd .formStyle button, .artContacts .searchContainer .btnAddContact, .artContacts .contactsContainer .trashAndCount div button, .artAddContact .contactChannelForm form div button, .artAddContact .saveCancelDiv .btnSaveContact, .artAddContact .saveCancelDiv .btnCancelContact, article .formAdd .formStyle button, article .ulPadre button, section .artUserCreate .formUserCreate .button, section .artUserUpdate .formUserUpdate .button {
   font-family: "Open Sans";
   font-size: 1em;
   cursor: pointer;
@@ -9,7 +9,7 @@
   background-color: #1D72C2;
 }
 
-.companySection article .companyDivTitle button:hover, .artContacts .searchContainer .btnAddContact:hover, .artAddContact .contactChannelForm form div button:hover, .artAddContact .saveCancelDiv .btnSaveContact:hover, .artAddContact .saveCancelDiv .btnCancelContact:hover, article .formAdd .formStyle button:hover, article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
+.companySection article .companyDivTitle button:hover, .artContacts .searchContainer .btnAddContact:hover, .artContacts .contactsContainer .trashAndCount div button:hover, .artAddContact .contactChannelForm form div button:hover, .artAddContact .saveCancelDiv .btnSaveContact:hover, .artAddContact .saveCancelDiv .btnCancelContact:hover, article .formAdd .formStyle button:hover, article .ulPadre button:hover, section .artUserCreate .formUserCreate .button:hover, section .artUserUpdate .formUserUpdate .button:hover {
   -webkit-box-shadow: black 1px 3px 5px;
           box-shadow: black 1px 3px 5px;
 }
@@ -284,20 +284,27 @@ header .navigation a {
   position: relative;
 }
 
-.artContacts .searchContainer .searching input {
+.artContacts .searchContainer .searching .iconDown {
+  position: absolute;
+  top: .7em;
+  right: 5em;
+  color: grey;
+  padding: 0;
+}
+
+.artContacts .searchContainer .searching .searchInput {
   padding: 1em;
   padding-left: 2em;
   padding-right: 21em;
   border: 1px solid #ced4da;
   border-radius: 7px;
   font-family: "Open Sans";
+  cursor: pointer;
 }
 
-.artContacts .searchContainer .searching .fa-sort-down {
-  position: absolute;
-  left: 85%;
-  top: 23%;
-  color: grey;
+.artContacts .searchContainer .searching .searchInput:focus {
+  outline: none;
+  border: 1px solid #0683F9;
 }
 
 .artContacts .searchContainer .searching label {
@@ -312,6 +319,96 @@ header .navigation a {
   color: #0683F9;
 }
 
+.artContacts .searchContainer .searching .search {
+  margin-top: 0px;
+  position: absolute;
+  z-index: 100;
+  background-color: #ffffff;
+  list-style: none;
+  text-align: left;
+  -webkit-box-shadow: grey 1px 1px 10px;
+          box-shadow: grey 1px 1px 10px;
+  border-radius: 5px;
+  width: 89%;
+  display: none;
+}
+
+.artContacts .searchContainer .searching .search li {
+  font-family: "Open Sans";
+  font-size: .8em;
+  color: grey;
+  font-weight: 400;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.artContacts .searchContainer .searching .search li .labelSearchStyle {
+  border: none;
+  color: black;
+}
+
+.artContacts .searchContainer .searching .search li .inputStyleSearch {
+  padding: 1em 4em 0em 0em;
+  margin-right: 3em;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.artContacts .searchContainer .searching .search li .inputStyleSearch:focus {
+  outline: none;
+  border-bottom: 2px solid grey;
+}
+
+.artContacts .searchContainer .searching .search li span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 40%;
+  margin-right: 6.2em;
+  z-index: 3;
+}
+
+.artContacts .searchContainer .searching .search li span .fa-sort-down {
+  padding: .5em;
+  padding-top: .6em;
+  background-color: #ffffff;
+  position: absolute;
+  right: 7em;
+  overflow: hidden;
+}
+
+.artContacts .searchContainer .searching .search li select {
+  margin-right: 13em;
+  border: none;
+  padding-right: 6.6em;
+  font-family: "Open Sans";
+}
+
+.artContacts .searchContainer .searching .search li select:focus {
+  outline: none;
+}
+
+.artContacts .searchContainer .searching .search li .countrySearch {
+  padding-right: 4.5em;
+}
+
+.artContacts .searchContainer .searching .search li .regionSearch {
+  padding-right: 4.5em;
+}
+
+.artContacts .searchContainer .searching .block {
+  display: block;
+  margin-top: 5px;
+}
+
 .artContacts .contactsContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,13 +418,52 @@ header .navigation a {
       flex-wrap: wrap;
 }
 
+.artContacts .contactsContainer .trashAndCount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  display: none;
+}
+
+.artContacts .contactsContainer .trashAndCount div button {
+  background-color: #ffffff;
+  color: #1D72C2;
+  border: none;
+  padding: .5em;
+}
+
+.artContacts .contactsContainer .trashAndCount div button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.artContacts .contactsContainer .trashAndCount .contactCount {
+  padding: .5em;
+  background-color: #E8E8E8;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-size: .8em;
+  color: #0683F9;
+  margin-bottom: .5em;
+  border-radius: 4px;
+}
+
 .artContacts .contactsContainer table {
   width: 100%;
   text-align: left;
-  border: 1px solid #ced4da;
+  border-collapse: collapse;
+  border: none;
+  border-left: 1px solid #ced4da;
+  border-right: 1px solid #ced4da;
+  border-bottom: 1px solid #ced4da;
 }
 
 .artContacts .contactsContainer table th {
+  border-top: 1px solid #ced4da;
   border-bottom: 1px solid #ced4da;
   padding-left: 1em;
   font-weight: 400;
@@ -373,10 +509,19 @@ header .navigation a {
   font-size: 20px;
 }
 
+.artContacts .contactsContainer table tr:hover:not(:first-child) {
+  background-color: #ced4da;
+}
+
 .artContacts .contactsContainer table td {
-  padding-top: 1em;
+  padding-top: .5em;
+  padding-bottom: .5em;
   font-size: .9em;
   font-weight: 400;
+}
+
+.artContacts .contactsContainer table td .trashPen {
+  display: none;
 }
 
 .artContacts .contactsContainer table td i {
@@ -417,10 +562,20 @@ header .navigation a {
 
 .artContacts .contactsContainer table td .fa-trash {
   color: #1D72C2;
+  font-size: 1.1em;
 }
 
 .artContacts .contactsContainer table td .fa-trash:hover {
   color: #DE0028;
+}
+
+.artContacts .contactsContainer table td .fa-pen {
+  font-size: 1.1em;
+  margin-left: .5em;
+}
+
+.artContacts .contactsContainer table td .fa-pen:hover {
+  color: #1D72C2;
 }
 
 .artContacts .contactsContainer table td .contactName {
@@ -711,11 +866,9 @@ header .navigation a {
 }
 
 .artAddContact .contactChannelForm {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
   padding-top: 3em;
-  width: 50%;
+  width: 60%;
   margin-left: 2em;
   margin-right: 2em;
 }
@@ -724,10 +877,18 @@ header .navigation a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding-top: .5em;
 }
 
 .artAddContact .contactChannelForm form div {
   display: block;
+}
+
+.artAddContact .contactChannelForm form div:first-child select {
+  padding-right: 5em;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .artAddContact .contactChannelForm form div label {

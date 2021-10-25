@@ -65,6 +65,21 @@ class Contact_channel{
             })
         }
     }
+    static async getAllContactChannelLines(req, res){
+        try{
+        let contactChannel = await contact_channel_lineModel.findAll();
+        return res.status(200).json({
+            status: 200,
+            data: contactChannel
+        });
+        }catch(err){
+            return res.status(500).json({
+                status: 500,
+                error: err
+            })
+        }
+    }
+
     static async getPreferences(req, res){
         try{
             const preference = await preferenceModel.findAll();
@@ -76,6 +91,37 @@ class Contact_channel{
             return res.status(500).json({
                 status: 500,
                 error: err
+            })
+        }
+    }
+    static async updateContactChannel(req, res){
+        try{
+            const {  information, preference_id } = req.body;
+            let contactChannelFound = await contact_channel_lineModel.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            if (!contactChannelFound) {
+                return res.status(404).json({
+                    status: 404,
+                    error: 'The input \"contact_channel_line_id\" is not found'
+                });
+            }
+            let contactUpdated = await contact_channel_lineModel.update(
+                { information, preference_id },
+                { where: { id: req.params.id } },
+                { fields: ['information', 'preference_id']});
+
+
+            return res.status(200).json({
+                status: 200,
+                data: "Contact Channel updated successfully"
+            });
+        }catch(err){
+            return res.status(500).json({
+                status: 500,
+                error: err.message
             })
         }
     }

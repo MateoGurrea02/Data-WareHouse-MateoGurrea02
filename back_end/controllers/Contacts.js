@@ -167,9 +167,11 @@ class Contact {
                 { name, surname, email, company_id, position_company, city_id, direction,interest},
                 { fields: ["name", "surname", "email", "company_id","position_company","city_id","direction","interest"] }
             );
+            let contactId = contactCreated.id;
             return res.status(201).json({
                 status: 201,
-                message: 'contact created'
+                message: 'contact created',
+                data: contactId
             }) 
         } catch (err) {
             return res.status(500).json({
@@ -180,15 +182,15 @@ class Contact {
     }
     static async update(req, res) {
         try {
-            const { name, surname, email, company_id, position_company, interest,direction} = req.body;
+            const { name, surname, email, company_id, position_company, interest,direction, city_id} = req.body;
             const contactId = await contactModel.findOne({
                 where: {
                     id: req.params.id
                 }
             });
             const contactUpdated = await contactId.update(
-                { name, surname, email, company_id, position_company, interest, direction},
-                { fields: ["name", "surname", "email", "company_id","position_company", "interest","direction"] }
+                { name, surname, email, company_id, position_company, interest, direction, city_id},
+                { fields: ["name", "surname", "email", "company_id","position_company", "interest","direction","city_id"] }
             );
             return res.status(200).json({
                 status: 200,
@@ -203,16 +205,36 @@ class Contact {
     }
     static async delete(req, res) {
         try {
-            const contactId = await contactModel.findOne({
+            const contactLineId = await contact_channel_lineModel.findOne({
+                where: {
+                    contact_id: req.params.id
+                }
+            });
+            //si no se encuentra el contactLineId se elimina el contacto
+            if (!contactLineId) {
+                const contactId = await contactModel.findOne({
+                    where: {
+                        id: req.params.id
+                    }
+                });
+                await contactId.destroy();
+                return res.status(200).json({
+                    status: 200,
+                    message: 'contact deleted'
+                })
+            }
+            //si se encuentra el contactLineId se elimina el contacto y el contactLine
+            const contactLine = await contactLineId.destroy();
+            const contact = await contactModel.findOne({
                 where: {
                     id: req.params.id
                 }
             });
-            await contactId.destroy();
+            await contact.destroy();
             return res.status(200).json({
                 status: 200,
                 message: 'contact deleted'
-            }) 
+            })
         } catch (err) {
             return res.status(500).json({
                 status: 500,
@@ -220,6 +242,393 @@ class Contact {
             })
         }
     }
+    static async getContactByName(req, res) {
+        try {
+            const { name } = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    name: name
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+            
+                }],
+                attributes: {
+                    exclude: ['company_id', 'country_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }
+    static async getContactByCompany(req, res) {
+        try {
+            const { company_id } = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    company_id: company_id
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+                }],
+                attributes: {
+                    exclude: ['company_id', 'country_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }
+    static async getContactByCountry(req, res) {
+        try {
+            const { country_id } = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    '$city.country.id$': country_id
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        },
+                        where: {
+                            id: country_id
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+                }],
+                attributes: {
+                    exclude: ['company_id', 'country_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }
+    static async getContactByRegion(req, res) {
+        try {
+            const { region_id } = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    '$city.country.region.id$': region_id
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region',
+                            where: {
+                                id: region_id
+                            }
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+                }],
+                attributes: {
+                    exclude: ['company_id', 'city_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }
+    static async getContactByPosition(req, res) {
+        try {
+            const { position} = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    position_company: position
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+            
+                }],
+                attributes: {
+                    exclude: ['company_id', 'country_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }
+    static async getContactByInterest(req, res) {
+        try {
+            const { interest} = req.params;
+            const contact = await contactModel.findAll({
+                where: {
+                    interest: interest
+                },
+                include: [{
+                    model: cityModel,
+                    as: 'city',
+                    include: [{
+                        model: countryModel,
+                        as: 'country',
+                        include: [{
+                            model: regionModel,
+                            as: 'region'
+                        }],attributes:{
+                            exclude: ['region_id']
+                        }
+                    }],
+                    attributes: {
+                        exclude: ['country_id']
+                    }
+                },{
+                    model: companyModel,
+                    as: 'company',
+                    include: [{
+                        model: cityModel,
+                        as: 'city',
+                    }],attributes:{
+                        exclude: ['city_id']
+                    }
+                },{
+                    model: contact_channel_lineModel,
+                    as: 'contact_channel_line',
+                    include: [
+                        {
+                            model: contact_channelModel,
+                            as: 'contact_channel',
+                        },
+                        {
+                            model: preferenceModel,
+                            as: 'preference',
+                        },
+                    ],attributes: {
+                        exclude: ['contact_id','preference_id','contact_channel_id']
+                    }
+            
+                }],
+                attributes: {
+                    exclude: ['company_id', 'country_id']
+                }
+            });
+            return res.json({
+                status: 200,
+                data: contact
+            });
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                message: error.message
+            });
+        }
+    }     
+
 }
 
 module.exports = Contact;

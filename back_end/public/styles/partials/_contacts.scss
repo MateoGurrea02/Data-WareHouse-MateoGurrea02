@@ -20,19 +20,25 @@
         }
         .searching{
             position: relative;
-            input{
+            .iconDown{
+                position: absolute;
+                top: .7em;
+                right: 5em;
+                color: $grey;
+                padding: 0;
+            }
+            .searchInput{
                 padding: 1em;
                 padding-left: 2em;
                 padding-right: 21em;
                 border: 1px solid $greyInput;
                 border-radius: 7px;
                 font-family: $openSans;
-            }
-            .fa-sort-down{
-                position: absolute;
-                left: 85%;
-                top: 23%;
-                color: $grey;
+                cursor: pointer;
+                &:focus{
+                    outline: none;
+                    border: 1px solid $blue;
+                }
             }
             label{
                 border: 1px solid $greyInput;
@@ -44,6 +50,77 @@
                     color: $blue;
                 }
             }
+            .search{
+                margin-top: 0px;
+                position:absolute;
+                z-index: 100;
+                background-color: $white;
+                list-style: none;
+                text-align: left;
+                box-shadow: $grey 1px 1px 10px;
+                border-radius: 5px;
+                width:89%;
+                display: none;
+                li{
+                    font-family: $openSans;
+                    font-size: .8em;
+                    color: $grey;
+                    font-weight: 400;
+                    padding-top: 1em;
+                    padding-bottom: 1em;
+                    display: flex;
+                    justify-content: space-between;
+                    .labelSearchStyle{
+                        border: none;
+                        color: black;
+                    }
+                    .inputStyleSearch{
+                        padding: 1em 4em 0em 0em;
+                        margin-right: 3em;
+                        border: none;
+                        border-bottom: 1px solid $greyInput;
+                        &:focus{
+                            outline: none;
+                            border-bottom: 2px solid $grey;
+                        }
+                    }
+                    span{
+                        display: flex;
+                        border: 1px solid $greyInput;
+                        border-radius: 5px;
+                        width: 40%;
+                        margin-right: 6.2em;
+                        z-index: 3;
+                        .fa-sort-down{
+                            padding: .5em;
+                            padding-top: .6em;
+                            background-color: $white;
+                            position: absolute;
+                            right: 7em;
+                            overflow: hidden;
+                        }
+                    }
+                    select{
+                        margin-right: 13em;
+                        border: none;
+                        padding-right: 6.6em;
+                        font-family: $openSans;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                    .countrySearch{
+                        padding-right: 4.5em;
+                    }
+                    .regionSearch{
+                        padding-right: 4.5em;
+                    }
+                }
+            }
+            .block{
+                display: block;
+                margin-top: 5px;
+            }
         }
 
     }
@@ -51,11 +128,44 @@
         display:flex;
         width: 90vw;
         flex-wrap: wrap;
+        .trashAndCount{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            display: none;
+            div{
+                button{
+                    @extend %button;
+                    background-color: $white;
+                    color: $blueFrance;
+                    border: none;
+                    padding: .5em;
+                    &:hover{
+                        box-shadow: none;
+                    }
+                }
+            }
+            .contactCount{
+                padding: .5em;
+                background-color: $whiteBone;
+                color: $white;
+                font-family: $openSans;
+                font-size: .8em;
+                color: $blue;
+                margin-bottom: .5em;
+                border-radius: 4px;
+            }
+        }
         table{
             width: 100%;
             text-align: left;
-            border: 1px solid $greyInput;
+            border-collapse:collapse;
+            border: none;
+            border-left: 1px solid $greyInput;
+            border-right: 1px solid $greyInput;
+            border-bottom: 1px solid $greyInput;
             th{
+                border-top: 1px solid $greyInput;
                 border-bottom: 1px solid $greyInput;
                 padding-left: 1em;
                 font-weight: $regular;
@@ -93,10 +203,21 @@
                     font-size: 20px;
                 }
             }
+            tr{
+                &:hover{
+                    &:not(:first-child){
+                        background-color: $greyInput;
+                    }
+                }
+            }
             td{
-                padding-top: 1em;
+                padding-top: .5em;
+                padding-bottom: .5em;
                 font-size: .9em;
                 font-weight: $regular;
+                .trashPen{
+                    display: none;
+                }
                 i{
                     color: $grey;
                     font-size: 20px;
@@ -128,8 +249,16 @@
                 }
                 .fa-trash{
                     color: $blueFrance;
+                    font-size: 1.1em;
                     &:hover{
                         color: $pink;
+                    }
+                }
+                .fa-pen{
+                    font-size: 1.1em;
+                    margin-left: .5em;
+                    &:hover{
+                        color: $blueFrance;
                     }
                 }
                 .contactName{
@@ -366,15 +495,24 @@
         }
     }
     .contactChannelForm{
-        display: flex;
+        display: block;
         padding-top: 3em;
-        width: 50%;
+        width: 60%;
         margin-left: 2em;
         margin-right: 2em;
         form{
             display: flex;
+            padding-top: .5em;
             div{
                 display: block;
+                &:first-child{
+                    select{
+                        padding-right: 5em;
+                        outline: none;
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                    }
+                }
                 label{
                     padding-left: .8em;
                     font-family: $openSans;
