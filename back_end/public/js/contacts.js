@@ -1,4 +1,3 @@
-
 let profile = localStorage.getItem('profile');
 let jwt = localStorage.getItem('user_token');
 let usersNav = document.getElementById('usersNav');
@@ -246,7 +245,11 @@ function renderContactList(response) {
 
         //evento para eliminar contacto desde las acciones
         trash.addEventListener('click', function () {
-            deleteContactCheck(response.data[i].id);
+            if (confirm('¿Estas seguro de eliminar este contacto?')) {
+                deleteContactCheck(response.data[i].id);
+            }else{
+                alert('No se elimino el contacto')
+            }
         });
         //evento para editar contacto desde las acciones
         edit.addEventListener('click', function () {
@@ -319,7 +322,7 @@ function renderContactList(response) {
                                     <div class="interestDiv">
                                         <label for="interestContactUpdate">
                                             <div class="interestBarEmpty">
-                                                <div id="interestBarFillUpdate" class="interestBarFill" style="width:${response.data[i].interest};">
+                                                <div id="interestBarFillUpdate" class="interestBarFill" >
             
                                                 </div>
                                             </div>
@@ -355,12 +358,16 @@ function renderContactList(response) {
                 artUpdateContact.style.display = 'none';
                 bgOpacity.classList.remove('bgOpacity');
                 artUpdateContact.remove();
+                window.location.reload();
+            });
+            btnCancelContactUpdate.addEventListener('click', function () {
+                btnCloseArtContactUpdate.click();
             });
             let interestBarFillUpdate = document.getElementById('interestBarFillUpdate');
             let interestContactUpdate = document.getElementById('interestContactUpdate');
             interestContactUpdate.value = response.data[i].interest;
-            interestBarFillUpdate.style.width = `${response.data[i].interest}%`;
-            interestBarFillUpdate.style.backgroundColor = colorBar(response.data[i].interest);
+            interestBarFillUpdate.style.width = `${interestContactUpdate.value}%`;
+            interestBarFillUpdate.style.backgroundColor =colorBar(interestContactUpdate.value);
             let contactChannelFormUpdate = document.getElementById('contactChannelFormUpdate');
             //canales de contacto
             if(response.data[i].contact_channel_line.length > 0){
@@ -386,22 +393,16 @@ function renderContactList(response) {
                             </select>
                         </div>
                         <div>
-                            <button id="btnAgregarContactChannelUpdate${response.data[i].id}"><i class="fas fa-plus"></i>Guardar Canal</button>
+                            <button id="btnAgregarContactChannelUpdate${response.data[i].contact_channel_line[j].id}"><i class="fas fa-plus"></i>Guardar Canal</button>
                         </div>
                     `
                     contactChannelFormUpdate.appendChild(contactChannel);
-                    let btnAgregarContactChannelUpdate = document.getElementById(`btnAgregarContactChannelUpdate${response.data[i].id}`);
-                    let contactChannelUpdate = document.getElementById(`contactChannelUpdate${response.data[i].id}`);
+                    let btnAgregarContactChannelUpdate = document.getElementById(`btnAgregarContactChannelUpdate${response.data[i].contact_channel_line[j].id}`);
                     let preferenceUpdate = document.getElementById(`preferenceUpdate${response.data[i].id}`);
                     let informationUpdate = document.getElementById(`informationUpdate${response.data[i].id}`);
-                    let contact_id = response.data[i].id;
                     let contact_channel_id = response.data[i].contact_channel_line[j].id;
                     btnAgregarContactChannelUpdate.addEventListener('click', function (e) {
                         e.preventDefault();
-                        console.log(contact_id);
-                        console.log(contact_channel_id);
-                        console.log(preferenceUpdate.value);
-                        console.log(informationUpdate.value);
                         contactChannelUpdated( contact_channel_id , informationUpdate.value, preferenceUpdate.value);
                     });
                 }
@@ -514,16 +515,16 @@ function renderContactChannelCreate(response) {
         let contactChannelCreate = document.getElementById(`contactChannelCreate${response.data[i].name}`);
         let preferenceCreate = document.getElementById(`preferenceCreate${response.data[i].name}`);
         let informationCreate = document.getElementById(`informationCreate${response.data[i].name}`);
-        btnAgregarContactChannel.disabled = true;
-        let contact_id = JSON.parse(localStorage.getItem('contact_id'));
-        btnAgregarContactChannel.addEventListener('click', function () {
-            if(btnAgregarContactChannel.disabled === true){
-                alert('Debes Guardar el contacto Primero');
-            }else{
-                addContactChannel(contact_id, contactChannelCreate.value, informationCreate.value, preferenceCreate.value);
-                localStorage.removeItem('contact_id');
-
+        btnAgregarContactChannel.disabled = false;
+        btnAgregarContactChannel.addEventListener('click', function (e) {
+            //if localstorage contact_id does not exist
+            let contact_id = JSON.parse(localStorage.getItem('contact_id'));
+            if(!localStorage.getItem('contact_id') || localStorage.getItem('contact_id') == 0){
+                e.preventDefault();
+                return alert('Guarde el Contacto Primero');
             }
+            addContactChannel(contact_id, contactChannelCreate.value, informationCreate.value, preferenceCreate.value);
+            e.preventDefault();
         });
     }
 }
@@ -583,6 +584,8 @@ btnAddContact.addEventListener('click', function () {
 btnCloseArtContactAdd.addEventListener('click', function () {
     bgOpacity.classList.remove('bgOpacity');
     artAddContact.style.display = "none";
+    localStorage.setItem('contact_id', 0);
+    window.location.reload();
 });
 
 // renderizando la barra de interes segun el porcentaje
@@ -843,8 +846,13 @@ function deleteContactCheck (contactIdArray) {
 }
 
 btnDeleteContactCheck.addEventListener('click', function () {
-    for (let i = 0; i < contactIdArray.length; i++) {
-        deleteContactCheck(contactIdArray[i]);
+    //confirmacion de eliminacion
+    if (confirm('¿Esta seguro de eliminar los contactos seleccionados?')) {
+        for (let i = 0; i < contactIdArray.length; i++) {
+            deleteContactCheck(contactIdArray[i]);
+        }
+    }else{
+        alert('Operacion cancelada');
     }
 });
 

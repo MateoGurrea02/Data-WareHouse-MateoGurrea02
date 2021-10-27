@@ -116,10 +116,11 @@ insert into cities values(null, "Tijuana", 5);
 insert into cities values(null, "Florida", 6);
 insert into cities values(null, "Texas", 6);
 
-insert into companies values(null,"face", "adsad222", "123412313", 1);
+insert into companies values(null, "company", "compa 213", "222333884", "company@gmail.com", 2);
 
-insert into contacts values(null, "mateo", "gurrea", "mateo@gmail.com", 1, "Developer", 1);
+insert into contacts values(null, "Prueba", "Probando", "Prueba@gmail.com", "prueba 556", 75, 1,"Developer", 1);
 
 insert into contact_channel_lines values(null, 1, 1,"33854098900", 2);
 
 insert into users values(null,"admin", "admin", "admin@gmail.com", 1, "123");
+insert into users values(null,"basico", "basico", "basico@gmail.com", 2, "123");
