@@ -21,41 +21,11 @@ _Ahora si con Node y Npm instalados tenes que abrir el proyecto con Visual Studi
 npm i
 ```
 
-_una vez intaladas las dependencias deberas abrir DBeaver y crear la base de datos como se muestra a continuacion_
-
-<p>
-  <img src="./img-readme/dbeaver1.png" title="img1">
-</p>
-<p>
-  <img src="./img-readme/dbeaver2.png" title="img1">
-</p>
+_una vez intaladas las dependencias deberas abrir DBeaver y crear la base de datos_
 
 _La contraseña correspondiente a la base puede ser cualquiera pero por defecto te recomiendo que pongas root_
 
-<p>
-  <img src="./img-readme/dbeaver3.png" title="img1">
-</p>
-
-_Lo siquiente es abrir un script para ingresar los datos y tablas de la base de datos_
-
-<p>
-  <img src="./img-readme/dbeaver4.png" title="img1">
-</p>
-
-_para crear la base de datos deberas copiar todo el codigo que esta en el archivo **data_bases.sql** y pegarlo en el script que abriste y por ultimo ejecutarlo_
-
-<p>
-  <img src="./img-readme/dbeaver5.png" title="img1">
-</p>
-
-_Podes ejecuralo de dos manera_
-
-* Desde el simbolo indicado en la img siguiente
-* O colocando el mouse en cada una de las lineas y apretar **ctrl+enter** de manera secuencial,(Tabla por tabla) de arriba hacia abajo
-
-<p>
-  <img src="./img-readme/dbeaver6.png" title="img1">
-</p>
+_para crear la base de datos deberas copiar todo el codigo que esta en el archivo **data_bases.sql** y pegarlo en dbeaver y ejecutarlo_
 
 ## Iniciando el servidor 💻
 
